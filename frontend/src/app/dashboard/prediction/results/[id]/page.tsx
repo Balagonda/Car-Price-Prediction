@@ -4,16 +4,15 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Download, AlertTriangle, CheckCircle, TrendingUp, TrendingDown, ArrowRight, Car } from "lucide-react";
+import { Download, AlertTriangle, CheckCircle, TrendingUp, TrendingDown } from "lucide-react";
 import axios from "axios";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from "recharts";
 
 export default function PredictionResults() {
   const { id } = useParams();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [prediction, setPrediction] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -27,7 +26,7 @@ export default function PredictionResults() {
             headers: { Authorization: `Bearer ${token}` }
         });
         setPrediction(res.data.data);
-      } catch (err: any) {
+      } catch (err) {
         setError("Failed to load prediction results. Please try again.");
       } finally {
         setLoading(false);
@@ -88,6 +87,7 @@ export default function PredictionResults() {
   const formatInr = (val: number) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(val);
 
   // Prepare SHAP chart data
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const shapData = prediction.shap_results?.map((s: any) => ({
       name: s.feature_name,
       value: s.impact_direction === 'positive' ? s.shap_value : -s.shap_value,
@@ -202,11 +202,13 @@ export default function PredictionResults() {
                             <BarChart data={shapData} layout="vertical" margin={{ top: 5, right: 30, left: 60, bottom: 5 }}>
                                 <XAxis type="number" hide />
                                 <YAxis dataKey="name" type="category" axisLine={false} tickLine={false} tick={{ fontSize: 12 }} />
+                                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                                 <Tooltip 
                                     formatter={(value: any) => [`₹${Math.abs(value).toLocaleString()}`, 'Impact']}
                                     cursor={{fill: 'transparent'}}
                                 />
                                 <Bar dataKey="value" radius={[0, 4, 4, 0]}>
+                                    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                                     {shapData.map((entry: any, index: number) => (
                                         <Cell key={`cell-${index}`} fill={entry.value > 0 ? '#10b981' : '#ef4444'} />
                                     ))}
@@ -226,6 +228,7 @@ export default function PredictionResults() {
                 <CardContent className="flex-1">
                     <ScrollArea className="h-[300px] pr-4">
                         <div className="space-y-4">
+                            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                             {prediction.recommendations?.map((rec: any, idx: number) => (
                                 <div key={idx} className="flex gap-4 p-4 rounded-lg bg-gray-50 dark:bg-slate-800/50 border border-gray-100 dark:border-slate-700">
                                     <div className="flex-shrink-0 mt-1">
@@ -253,6 +256,7 @@ export default function PredictionResults() {
             <p className="text-sm text-gray-500 mb-6">Found {prediction.similar_vehicles?.length || 0} similar vehicles currently listed or recently sold.</p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                 {prediction.similar_vehicles?.map((car: any, idx: number) => (
                     <Card key={idx} className="shadow-sm hover:shadow-md transition-shadow">
                         <CardHeader className="p-4 pb-2">

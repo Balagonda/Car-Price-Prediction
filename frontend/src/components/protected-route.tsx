@@ -29,7 +29,7 @@ export function ProtectedRoute({
   requiredRole,
   loadingFallback,
 }: ProtectedRouteProps) {
-  const { user, isLoading, isAuthenticated, isVerified, isAdmin } = useAuth();
+  const { isLoading, isAuthenticated, isVerified, isAdmin } = useAuth();
   const router = useRouter();
 
   useEffect(() => {

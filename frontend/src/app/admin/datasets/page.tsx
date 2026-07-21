@@ -22,6 +22,7 @@ export default function DatasetManagementPage() {
       setErrorMsg(null);
       setFile(null); // reset file
     },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onError: (error: any) => {
       setErrorMsg(error?.response?.data?.detail?.message || error.message || "Upload failed");
       setResult(null);

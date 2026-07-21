@@ -22,7 +22,7 @@ import {
   createContext,
   useCallback,
   useContext,
-  useEffect,
+  useContext,
   useMemo,
   useState,
   type ReactNode,
@@ -89,7 +89,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const {
     data: user = null,
     isLoading,
-    refetch: refetchUser,
   } = useQuery({
     queryKey: ["auth", "me"],
     queryFn: getCurrentUser,

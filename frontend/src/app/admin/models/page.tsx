@@ -24,6 +24,7 @@ export default function ModelsManagementPage() {
       setErrorMsg(null);
       // Let polling pick up the new "training" version
     },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onError: (error: any) => {
       setErrorMsg(error?.response?.data?.detail?.message || error.message || "Training trigger failed");
     }
@@ -34,6 +35,7 @@ export default function ModelsManagementPage() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin", "models"] });
     },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onError: (error: any) => {
       alert("Failed to activate: " + (error?.response?.data?.detail?.message || error.message));
     }

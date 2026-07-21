@@ -8,7 +8,6 @@ import * as z from "zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -20,7 +19,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Camera, Car, MapPin, ChevronRight, ChevronLeft, CheckCircle2, AlertCircle } from "lucide-react";
+import { Camera, ChevronRight, ChevronLeft, CheckCircle2, AlertCircle } from "lucide-react";
 import axios from "axios";
 
 const predictionSchema = z.object({
@@ -75,6 +74,7 @@ export default function PredictionWizard() {
   });
 
   const nextStep = async () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let fieldsToValidate: any[] = [];
     if (currentStep === 1) {
         fieldsToValidate = ['brand_id', 'car_model_id', 'manufacturing_year', 'fuel_type', 'transmission', 'category'];
@@ -105,6 +105,7 @@ export default function PredictionWizard() {
       
       const predictionId = res.data.data.id;
       router.push(`/dashboard/prediction/results/${predictionId}`);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setError(err.response?.data?.detail?.message || "An error occurred during prediction.");
       setIsSubmitting(false);

@@ -17,13 +17,11 @@ export default function VerifyEmailPage() {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
 
-  const [status, setStatus] = useState<"loading" | "success" | "error">("loading");
-  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"loading" | "success" | "error">(() => token ? "loading" : "error");
+  const [message, setMessage] = useState(() => token ? "" : "No verification token found in the URL.");
 
   useEffect(() => {
     if (!token) {
-      setStatus("error");
-      setMessage("No verification token found in the URL.");
       return;
     }
 
