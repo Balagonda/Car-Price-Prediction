@@ -24,13 +24,31 @@ settings = get_settings()
 # ──────────────────────────────────────────────
 # Async Engine
 # ──────────────────────────────────────────────
+from urllib.parse import urlparse, parse_qs, urlencode, urlunparse
+
+db_url = settings.DATABASE_URL
+connect_args = {}
+
+url_parts = urlparse(db_url)
+query_params = parse_qs(url_parts.query)
+
+if "sslmode" in query_params or "neon.tech" in url_parts.netloc:
+    for param in ["sslmode", "channel_binding", "sslrootcert", "target_session_attrs"]:
+        query_params.pop(param, None)
+    new_query = urlencode(query_params, doseq=True)
+    url_parts = url_parts._replace(query=new_query)
+    db_url = urlunparse(url_parts)
+    connect_args["ssl"] = True
+    connect_args["statement_cache_size"] = 0
+
 engine = create_async_engine(
-    settings.DATABASE_URL,
+    db_url,
     echo=settings.DEBUG,          # Logs SQL queries in development
     pool_size=10,
     max_overflow=20,
     pool_pre_ping=True,           # Verify connection before checkout
     pool_recycle=3600,            # Recycle connections after 1 hour
+    connect_args=connect_args,
 )
 
 # ──────────────────────────────────────────────

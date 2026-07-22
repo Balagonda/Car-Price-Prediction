@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Download, AlertTriangle, CheckCircle, TrendingUp, TrendingDown } from "lucide-react";
-import axios from "axios";
+import { apiClient } from "@/lib/api-client";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from "recharts";
 
 export default function PredictionResults() {
@@ -21,10 +21,7 @@ export default function PredictionResults() {
   useEffect(() => {
     const fetchPrediction = async () => {
       try {
-        const token = localStorage.getItem("access_token");
-        const res = await axios.get(`http://localhost:8000/api/v1/predictions/${id}`, {
-            headers: { Authorization: `Bearer ${token}` }
-        });
+        const res = await apiClient.get(`/predictions/${id}`);
         setPrediction(res.data.data);
       } catch (err) {
         setError("Failed to load prediction results. Please try again.");
@@ -41,9 +38,7 @@ export default function PredictionResults() {
   const handleDownloadReport = async () => {
     setIsDownloading(true);
     try {
-        const token = localStorage.getItem("access_token");
-        const res = await axios.get(`http://localhost:8000/api/v1/predictions/${id}/report`, {
-            headers: { Authorization: `Bearer ${token}` },
+        const res = await apiClient.get(`/predictions/${id}/report`, {
             responseType: 'blob', // Important for downloading files
         });
         

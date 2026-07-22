@@ -20,7 +20,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Progress } from "@/components/ui/progress";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Camera, ChevronRight, ChevronLeft, CheckCircle2, AlertCircle } from "lucide-react";
-import axios from "axios";
+import { apiClient } from "@/lib/api-client";
 
 const predictionSchema = z.object({
   brand_id: z.coerce.number().min(1, "Brand is required"),
@@ -96,12 +96,7 @@ export default function PredictionWizard() {
     setIsSubmitting(true);
     setError(null);
     try {
-      const token = localStorage.getItem("access_token");
-      const res = await axios.post("http://localhost:8000/api/v1/predictions", data, {
-          headers: {
-              Authorization: `Bearer ${token}`
-          }
-      });
+      const res = await apiClient.post("/predictions", data);
       
       const predictionId = res.data.data.id;
       router.push(`/dashboard/prediction/results/${predictionId}`);

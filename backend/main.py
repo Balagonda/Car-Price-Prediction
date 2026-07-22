@@ -39,9 +39,8 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     """
     setup_logging()
     logger = structlog.get_logger()
-    logger.info("application_startup", app=settings.APP_NAME, version=settings.APP_VERSION, env=settings.ENVIRONMENT)
-
-    print(f"🚀 {settings.APP_NAME} v{settings.APP_VERSION} starting...")
+    logger.info("application_startup", app=settings.APP_NAME, env=settings.ENVIRONMENT, version=settings.APP_VERSION)
+    print(f"[*] {settings.APP_NAME} v{settings.APP_VERSION} starting...")
     print(f"   Environment : {settings.ENVIRONMENT}")
     print(f"   Docs        : http://localhost:8000/docs")
     print(f"   API prefix  : /api/v1")
@@ -56,22 +55,22 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
             active = await ml_service.load_active_model(db)
             if active:
                 print(
-                    f"   🔥 ML model warmed  : version={active.version_tag} "
+                    f"   [*] ML model warmed  : version={active.version_tag} "
                     f"(R²={active.r2_score:.4f})"
                 )
             else:
                 print(
-                    "   ⚠️  No active ML model found. "
+                    "   [!]  No active ML model found. "
                     "Train + activate a model via POST /api/v1/admin/models/train."
                 )
     except Exception as exc:
         # Don't crash startup if the DB isn't ready (e.g., first-time setup)
-        print(f"   ⚠️  ML model warm-up skipped: {exc}")
+        print(f"   [!]  ML model warm-up skipped: {exc}")
 
     yield
 
     # Shutdown
-    print("🛑 AutoWorth AI shutting down...")
+    print("[x] AutoWorth AI shutting down...")
 
 
 # ──────────────────────────────────────────────

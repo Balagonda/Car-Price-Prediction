@@ -74,10 +74,30 @@ def do_run_migrations(connection: Connection) -> None:
 
 async def run_async_migrations() -> None:
     """Create an async engine and run migrations."""
+    from urllib.parse import urlparse, parse_qs, urlencode, urlunparse
+    
+    db_url = config.get_main_option("sqlalchemy.url")
+    connect_args = {}
+
+    if db_url:
+        url_parts = urlparse(db_url)
+        query_params = parse_qs(url_parts.query)
+
+        if "sslmode" in query_params or "neon.tech" in url_parts.netloc:
+            for param in ["sslmode", "channel_binding", "sslrootcert", "target_session_attrs"]:
+                query_params.pop(param, None)
+            new_query = urlencode(query_params, doseq=True)
+            url_parts = url_parts._replace(query=new_query)
+            db_url = urlunparse(url_parts)
+            config.set_main_option("sqlalchemy.url", db_url)
+            connect_args["ssl"] = True
+            connect_args["statement_cache_size"] = 0
+
     connectable = async_engine_from_config(
         config.get_section(config.config_ini_section, {}),
         prefix="sqlalchemy.",
         poolclass=pool.NullPool,
+        connect_args=connect_args,
     )
     async with connectable.connect() as connection:
         await connection.run_sync(do_run_migrations)

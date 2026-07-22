@@ -12,7 +12,7 @@ from __future__ import annotations
 import uuid
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, HTTPException, Query, Response, status
+from fastapi import APIRouter, Depends, HTTPException, Query, status, Response
 
 from app.api.v1.dependencies import DBSession, VerifiedUser, ActiveUser
 from app.schemas.common import APIResponse, PaginatedResponse
