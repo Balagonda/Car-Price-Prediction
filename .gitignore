@@ -35,14 +35,19 @@ htmlcov/
 
 # ML artifacts
 *.pkl
-*.joblib
 *.h5
 *.pt
 *.pth
 *.onnx
 backend/app/ml/weights/
-backend/app/ml/artifacts/
 backend/storage/
+backend/temp_artifacts/
+
+# Ignore general artifacts and joblibs, but include active production model v_manual_1
+*.joblib
+!backend/app/ml/artifacts/v_manual_1/
+!backend/app/ml/artifacts/v_manual_1/**
+!backend/app/ml/artifacts/v_manual_1/*.joblib
 
 # ──────────────────────────────────────────────
 # Node / Frontend

@@ -170,9 +170,9 @@ class MLPipeline:
             "cross_val_score": float(cv_mean),
             "training_time_seconds": round(elapsed, 2),
             "training_samples": len(df),
-            "model_artifact_path": str(model_path),
-            "preprocessor_path": str(preprocessor_path),
-            "knn_artifact_path": str(knn_path),
+            "model_artifact_path": model_path.as_posix(),
+            "preprocessor_path": preprocessor_path.as_posix(),
+            "knn_artifact_path": knn_path.as_posix(),
             "low_confidence": cv_mean < R2_TARGET,
         }
 

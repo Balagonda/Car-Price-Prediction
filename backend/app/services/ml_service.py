@@ -85,10 +85,42 @@ class MLService:
         logger.info("🔥 [MLService] Model cache warmed (version=%s)", version_id)
         return active_version
 
+    def _resolve_artifact_path(self, path_str: str | None) -> Path:
+        """Resolve artifact path defensively across OS platforms and execution contexts."""
+        if not path_str:
+            raise FileNotFoundError("Model artifact path is not configured.")
+        clean_str = str(path_str).replace("\\", "/").strip()
+        p = Path(clean_str)
+        if p.exists():
+            return p
+
+        # Check stripping backend/ prefix if present
+        if clean_str.startswith("backend/"):
+            stripped = Path(clean_str[len("backend/"):])
+            if stripped.exists():
+                return stripped
+
+        # Check prepending backend/
+        prepended = Path("backend") / clean_str
+        if prepended.exists():
+            return prepended
+
+        # Check in configured artifacts directory
+        parts = Path(clean_str).parts
+        if len(parts) >= 2:
+            candidate = self._artifacts_dir / parts[-2] / parts[-1]
+            if candidate.exists():
+                return candidate
+            candidate_file = self._artifacts_dir / parts[-1]
+            if candidate_file.exists():
+                return candidate_file
+
+        return p
+
     async def _load_artifacts(self, version: ModelVersion) -> None:
         """Deserialize model + preprocessor + KNN artifacts from disk."""
-        model_path = Path(version.model_artifact_path)
-        preprocessor_path = Path(version.preprocessor_path)
+        model_path = self._resolve_artifact_path(version.model_artifact_path)
+        preprocessor_path = self._resolve_artifact_path(version.preprocessor_path)
 
         if not model_path.exists():
             raise FileNotFoundError(
@@ -253,8 +285,8 @@ class MLService:
         explainer = MLService._cached_explainer
         similarity = MLService._cached_similarity
 
-        model_path = Path(active_version.model_artifact_path)
-        preprocessor_path = Path(active_version.preprocessor_path)
+        model_path = self._resolve_artifact_path(active_version.model_artifact_path)
+        preprocessor_path = self._resolve_artifact_path(active_version.preprocessor_path)
 
         # Step 1: Price prediction
         pred_result = await pipeline.predict(features, model_path, preprocessor_path)
