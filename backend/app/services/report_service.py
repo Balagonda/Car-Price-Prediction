@@ -8,8 +8,6 @@ import qrcode
 from fastapi import HTTPException, status
 from jinja2 import Environment, FileSystemLoader
 from sqlalchemy.ext.asyncio import AsyncSession
-from weasyprint import HTML
-
 from app.services.prediction_service import PredictionService
 
 logger = logging.getLogger(__name__)
@@ -106,7 +104,17 @@ class ReportService:
             qr_code=qr_base64
         )
 
-        # Convert HTML to PDF using WeasyPrint
-        pdf_bytes = HTML(string=html_out).write_pdf()
+        # Convert HTML to PDF using xhtml2pdf
+        from xhtml2pdf import pisa
+        import io
+        
+        result_file = io.BytesIO()
+        pisa_status = pisa.CreatePDF(html_out, dest=result_file)
+        
+        if pisa_status.err:
+            logger.error("PDF generation error: %s", pisa_status.err)
+            raise HTTPException(status_code=500, detail="Failed to generate PDF report.")
+            
+        pdf_bytes = result_file.getvalue()
         
         return pdf_bytes

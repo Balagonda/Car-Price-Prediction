@@ -43,7 +43,7 @@ if "sslmode" in query_params or "neon.tech" in url_parts.netloc:
 
 engine = create_async_engine(
     db_url,
-    echo=settings.DEBUG,          # Logs SQL queries in development
+    echo=False,                   # Disabled to prevent UnicodeEncodeError on Windows
     pool_size=10,
     max_overflow=20,
     pool_pre_ping=True,           # Verify connection before checkout

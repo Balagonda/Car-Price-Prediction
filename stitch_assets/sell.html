@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sell My Car | AutoGreen Marketplace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#d1e4fb",
+                        "tertiary-fixed": "#e1e3e4",
+                        "on-surface-variant": "#3d4a3e",
+                        "on-tertiary-container": "#434546",
+                        "surface-bright": "#f3fcf1",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#6bfe9c",
+                        "tertiary": "#5c5f60",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2b322b",
+                        "inverse-primary": "#4ae183",
+                        "on-primary-fixed-variant": "#005228",
+                        "on-background": "#161d17",
+                        "tertiary-container": "#b1b3b4",
+                        "surface": "#f3fcf1",
+                        "outline-variant": "#bbcbbb",
+                        "outline": "#6c7b6d",
+                        "surface-dim": "#d4dcd2",
+                        "on-secondary-fixed": "#091d2e",
+                        "text-secondary": "#7F8C8D",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#e8f0e5",
+                        "primary": "#006d37",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#454748",
+                        "on-error-container": "#93000a",
+                        "background": "#f3fcf1",
+                        "on-primary-container": "#005027",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#4ae183",
+                        "error": "#ba1a1a",
+                        "primary-container": "#2ecc71",
+                        "surface-container-highest": "#dce5da",
+                        "on-primary-fixed": "#00210c",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-gray": "#F8F9FA",
+                        "on-secondary-container": "#526478",
+                        "on-tertiary-fixed": "#191c1d",
+                        "secondary-container": "#cfe2f9",
+                        "mint-soft": "#E9F7EF",
+                        "surface-container-high": "#e2ebe0",
+                        "secondary-fixed-dim": "#b5c8df",
+                        "secondary": "#4e6073",
+                        "surface-container-low": "#eef6eb",
+                        "on-surface": "#161d17",
+                        "tertiary-fixed-dim": "#c5c7c8",
+                        "surface-tint": "#006d37",
+                        "surface-variant": "#dce5da",
+                        "on-secondary-fixed-variant": "#36485b",
+                        "inverse-on-surface": "#ebf3e8",
+                        "link-blue": "#007BE5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "64px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "caption": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .mint-glow {
+            box-shadow: 0px 10px 30px rgba(46, 204, 113, 0.08);
+        }
+        .glass-nav {
+            background: rgba(248, 249, 250, 0.8);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface-container-lowest border-b border-surface-variant flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 max-w-container-max mx-auto glass-nav">
+<div class="flex items-center gap-base">
+<span class="font-headline-md text-headline-md font-bold text-primary">AutoGreen</span>
+</div>
+<nav class="hidden md:flex gap-gutter items-center">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Used Cars</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">New Cars</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-body-md" href="#">Sell Car</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Valuation</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Compare</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">News</a>
+</nav>
+<div class="flex items-center gap-gutter">
+<div class="hidden lg:flex items-center gap-base text-on-surface-variant">
+<span class="material-symbols-outlined">location_on</span>
+<span class="font-label-md">City Selector</span>
+</div>
+<span class="material-symbols-outlined text-primary cursor-pointer text-headline-md">account_circle</span>
+</div>
+</header>
+<main class="pt-16">
+<!-- Hero Section -->
+<section class="relative min-h-[600px] flex items-center bg-surface py-20 px-margin-mobile md:px-margin-desktop">
+<div class="max-w-container-max mx-auto grid md:grid-cols-2 gap-12 items-center">
+<div class="z-10 space-y-8">
+<span class="inline-block px-4 py-1 rounded-full bg-mint-soft text-primary font-label-md">TRUSTED BY 1M+ SELLERS</span>
+<h1 class="font-display-lg text-display-lg text-on-background leading-tight">
+                        Sell Your Car at the <br/><span class="text-primary">Best Price</span> Instantly.
+                    </h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-lg">
+                        Skip the dealership hassles. Get a fair valuation, free doorstep inspection, and same-day payment for your vehicle.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-gutter">
+<button class="bg-primary-container text-on-primary-container font-headline-md py-4 px-10 rounded-xl hover:shadow-lg transition-all mint-glow flex items-center justify-center gap-base">
+                            Get Started
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="border-2 border-primary text-primary font-headline-md py-4 px-10 rounded-xl hover:bg-mint-soft transition-all flex items-center justify-center gap-base">
+                            Check Valuation
+                        </button>
+</div>
+</div>
+<div class="relative">
+<div class="rounded-3xl overflow-hidden shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="A professional, high-end studio photograph of a polished black Ford Endeavour SUV with chrome detailing, showcasing its imposing front grille and crystal-clear headlights. The lighting is sophisticated and moody, with soft green ambient reflections that align with a minimalist light-mode aesthetic. The setting is a clean, modern architectural space with pristine concrete flooring and a bright, airy atmosphere that emphasizes luxury and trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFtfwj8afxWa1bylP8Uca6QsO6RSp9mlVKqmPqZ6gx7G90q4kDaYFbnMSRCryEm1jWLozoCrWkXrt_oJauWTdpAHEwihoZ8LiMsfqMYaIFwTdvVyQIS74rX8LsqyyWXlVLYrUTa5QD5w_B0TNF3tR3vPhk4RUN2Ks2_Pqp8guu8yO8DVKNcwtRbvq-ecP5iCkd8SY7h4b1hy50EOBx0BbnbgkMrq9Ojde4R9s91ApTJVSy2FDe6LN4"/>
+</div>
+<!-- Quick Info Floating Card -->
+<div class="absolute -bottom-6 -left-6 bg-surface-container-lowest p-6 rounded-2xl shadow-xl border border-surface-variant max-w-[240px] md:block hidden">
+<div class="flex items-center gap-base mb-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-md">Instant Payment</span>
+</div>
+<p class="text-caption font-caption text-on-surface-variant">Funds transferred to your account within 60 minutes of car handover.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Process Section -->
+<section class="py-32 bg-surface-container-lowest px-margin-mobile md:px-margin-desktop">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-20 space-y-4">
+<h2 class="font-headline-lg text-headline-lg">Selling made as easy as <span class="text-primary">1-2-3</span></h2>
+<p class="font-body-lg text-secondary">Our streamlined process ensures you get the best value with zero stress.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-gutter relative">
+<!-- Step 1 -->
+<div class="p-base space-y-6 group">
+<div class="w-20 h-20 rounded-2xl bg-mint-soft flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[40px]">laptop_mac</span>
+</div>
+<div class="space-y-2">
+<h3 class="font-headline-md text-headline-md">1. Get an Instant Online Valuation</h3>
+<p class="font-body-md text-on-surface-variant">Enter your car details online and receive a data-backed price range based on current market trends in seconds.</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="p-base space-y-6 group">
+<div class="w-20 h-20 rounded-2xl bg-mint-soft flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[40px]">calendar_month</span>
+</div>
+<div class="space-y-2">
+<h3 class="font-headline-md text-headline-md">2. Book a Free Doorstep Inspection</h3>
+<p class="font-body-md text-on-surface-variant">Our experts visit you at your convenience for a professional 300-point inspection to finalize the offer.</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="p-base space-y-6 group">
+<div class="w-20 h-20 rounded-2xl bg-mint-soft flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[40px]">payments</span>
+</div>
+<div class="space-y-2">
+<h3 class="font-headline-md text-headline-md">3. Get Paid Instantly</h3>
+<p class="font-body-md text-on-surface-variant">Once you accept the final offer, we handle all paperwork and transfer the full amount to your bank account immediately.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="py-32 bg-surface-container px-margin-mobile md:px-margin-desktop overflow-hidden">
+<div class="max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-gutter">
+<div class="space-y-4">
+<h2 class="font-headline-lg text-headline-lg">What our <span class="text-primary">Happy Sellers</span> say</h2>
+<p class="font-body-md text-secondary">Join thousands of people who found a better way to sell their cars.</p>
+</div>
+<div class="flex gap-4">
+<button class="w-12 h-12 rounded-full border border-primary text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-12 h-12 rounded-full border border-primary text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid md:grid-cols-3 gap-gutter">
+<!-- Testimonial 1 -->
+<div class="bg-surface-container-lowest p-8 rounded-3xl space-y-6 mint-glow border border-surface-variant/30">
+<div class="flex text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-on-surface italic leading-relaxed">"Sold my 2017 Honda City in less than 24 hours. The inspection was professional, and the money was in my account before they even drove the car away!"</p>
+<div class="flex items-center gap-4 pt-4">
+<div class="w-12 h-12 rounded-full bg-surface-dim overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a smiling middle-aged man in business casual attire. The image is captured in soft, natural daylight against a blurred corporate background, maintaining a high-trust and friendly atmosphere consistent with a premium automotive marketplace UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfhZ566_GY-3v2UXPmsNWv95b4pbFV0ZufDz74J76iL551xkdgZhI6yos8-MBvDZ2058T8oipefMUQIATQv02PB4BYPQgs346CqCWoW5nrXj3FH9o1iQKGqAuz5jIh91kb1tRzfm-jkyFoEpW_cOJY_T0hqOZHowfmebEMRl1XBHHC0TlIexMOLbRJ_CYOnkGBJ8p6gZYkkdIONz8UkaUZi8GIayCQCx7zHxZ8Ju8uaSoEzjRaQ-XY"/>
+</div>
+<div>
+<h4 class="font-label-md">Rahul Sharma</h4>
+<p class="font-caption text-secondary">New Delhi</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="bg-surface-container-lowest p-8 rounded-3xl space-y-6 mint-glow border border-surface-variant/30">
+<div class="flex text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-on-surface italic leading-relaxed">"I was skeptical about online valuations, but AutoGreen gave me a price better than local dealers. The doorstep service was incredibly convenient for my busy schedule."</p>
+<div class="flex items-center gap-4 pt-4">
+<div class="w-12 h-12 rounded-full bg-surface-dim overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a confident young woman with a warm smile, wearing a modern emerald green blouse. The background is a minimalist, softly lit interior with high-key lighting, emphasizing clarity and modern efficiency. The style is clean and corporate modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZscUD3krErAAluA8VlVmDDJUoS4FFwRFxzWPKCcx0w8ymaJKGVc03wX2xfq_nl4sBmmv7VssagQ_aP0DYtuxr4W_6_gr_5NjkR6-fd76idrmjMQndv1qVimX1Dyb8h11Ummr8jvLymSygdYnBVUCSwrQhqwwRQhQiKjlraMzws9oOiKGbpeljTqPQ8teMspjFGFqyLmo93gvK6CIGKtoym0VRAq8BCCaLaPPsNBSY8AcQOiFrY85m"/>
+</div>
+<div>
+<h4 class="font-label-md">Ananya Iyer</h4>
+<p class="font-caption text-secondary">Bangalore</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="bg-surface-container-lowest p-8 rounded-3xl space-y-6 mint-glow border border-surface-variant/30">
+<div class="flex text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-on-surface italic leading-relaxed">"The AI-based pricing is spot on. No hidden deductions or unnecessary bargaining. Transparent from start to finish. Highly recommended for premium cars."</p>
+<div class="flex items-center gap-4 pt-4">
+<div class="w-12 h-12 rounded-full bg-surface-dim overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A close-up portrait of a satisfied customer, a man in his late 30s, looking into the camera with trust. The lighting is crisp and clear, set in a bright outdoor environment that suggests transparency and reliability. The overall aesthetic is minimalist and high-end." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDqxOCANtk7MzUYzcHeDkmFFhDFiLndqsNDXOJrCnxkuPjcvoyAJBG6doxGbUHLw2ttef9oCaLoopYC1A_5FRywuBf84yc42e0dtDuJAqzgFwh3EkGtiXZKpUYVJ9U7Iqugm3veUogezok2cEBdZklJOyZOP-pDuHzBYysPKVNwdlrmc7jZOPjjeRkqc1d2lkfDnK-HIGadVqT7JyTkfhlGAKW_BdZ3F8T4L6GsjUFjOb9Rtg56moi"/>
+</div>
+<div>
+<h4 class="font-label-md">Vikram Mehta</h4>
+<p class="font-caption text-secondary">Mumbai</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="py-32 bg-surface-container-lowest px-margin-mobile md:px-margin-desktop">
+<div class="max-w-3xl mx-auto">
+<h2 class="font-headline-lg text-headline-lg text-center mb-16">Frequently Asked Questions</h2>
+<div class="space-y-gutter">
+<!-- FAQ Item 1 -->
+<div class="border-b border-surface-variant pb-base">
+<button class="w-full flex justify-between items-center py-4 text-left group" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.arrow').classList.toggle('rotate-180')">
+<span class="font-headline-md text-on-background group-hover:text-primary transition-colors">How do you calculate my car's value?</span>
+<span class="material-symbols-outlined arrow transition-transform">expand_more</span>
+</button>
+<div class="hidden py-4 text-secondary font-body-md">
+                            We use advanced AI algorithms that analyze thousands of recent market transactions, current demand for your specific model, odometer reading, and overall condition to provide the most competitive price.
+                        </div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="border-b border-surface-variant pb-base">
+<button class="w-full flex justify-between items-center py-4 text-left group" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.arrow').classList.toggle('rotate-180')">
+<span class="font-headline-md text-on-background group-hover:text-primary transition-colors">Is the doorstep inspection really free?</span>
+<span class="material-symbols-outlined arrow transition-transform">expand_more</span>
+</button>
+<div class="hidden py-4 text-secondary font-body-md">
+                            Yes, absolutely. We offer a 100% free doorstep inspection with no obligation to sell. Our experts will come to your home or office at a time that suits you best.
+                        </div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="border-b border-surface-variant pb-base">
+<button class="w-full flex justify-between items-center py-4 text-left group" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.arrow').classList.toggle('rotate-180')">
+<span class="font-headline-md text-on-background group-hover:text-primary transition-colors">What documents do I need to sell my car?</span>
+<span class="material-symbols-outlined arrow transition-transform">expand_more</span>
+</button>
+<div class="hidden py-4 text-secondary font-body-md">
+                            You'll need your original Registration Certificate (RC), Insurance policy, Address proof, ID proof (Aadhar/PAN), and Service history logs if available. We assist with all the transfer paperwork!
+                        </div>
+</div>
+<!-- FAQ Item 4 -->
+<div class="border-b border-surface-variant pb-base">
+<button class="w-full flex justify-between items-center py-4 text-left group" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.arrow').classList.toggle('rotate-180')">
+<span class="font-headline-md text-on-background group-hover:text-primary transition-colors">How long does the payment take?</span>
+<span class="material-symbols-outlined arrow transition-transform">expand_more</span>
+</button>
+<div class="hidden py-4 text-secondary font-body-md">
+                            Once the deal is finalized and documents are signed, the payment is initiated instantly via IMPS/NEFT/RTGS and usually reflects in your account within 60 minutes.
+                        </div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-20 px-margin-mobile md:px-margin-desktop">
+<div class="max-w-container-max mx-auto bg-primary text-on-primary rounded-[40px] p-12 md:p-24 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12">
+<!-- Decorative background elements -->
+<div class="absolute top-0 right-0 w-96 h-96 bg-primary-container/20 rounded-full blur-3xl -mr-48 -mt-48"></div>
+<div class="z-10 text-center md:text-left space-y-6">
+<h2 class="font-display-lg text-display-lg">Ready to sell <br/>your car today?</h2>
+<p class="font-body-lg opacity-90">Join 1,000+ sellers who found their car's true value this week.</p>
+</div>
+<div class="z-10 w-full md:w-auto">
+<button class="w-full md:w-auto bg-primary-container text-on-primary-container font-headline-md py-6 px-16 rounded-2xl hover:scale-105 transition-transform shadow-2xl">
+                        Get Valuation Now
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container mt-20 border-t border-surface-variant">
+<div class="w-full py-12 px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter max-w-container-max mx-auto">
+<div class="space-y-6">
+<span class="font-headline-md text-headline-md font-bold text-primary">AutoGreen</span>
+<p class="font-caption text-on-surface-variant">© 2024 AutoGreen Marketplace. Driven by Transparency and sustainability in the automotive world.</p>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-on-background">Quick Links</h4>
+<ul class="space-y-2">
+<li><a class="font-caption text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">About Us</a></li>
+<li><a class="font-caption text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Careers With Us</a></li>
+<li><a class="font-caption text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Investors</a></li>
+<li><a class="font-caption text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Dealer Solutions</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-on-background">Support</h4>
+<ul class="space-y-2">
+<li><a class="font-caption text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Contact Us</a></li>
+<li><a class="font-caption text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Terms &amp; Conditions</a></li>
+<li><a class="font-caption text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Privacy Policy</a></li>
+<li><a class="font-caption text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Car Valuation Guide</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-on-background">Connect</h4>
+<div class="flex gap-4">
+<a class="text-primary hover:opacity-80" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="text-primary hover:opacity-80" href="#"><span class="material-symbols-outlined">share</span></a>
+<a class="text-primary hover:opacity-80" href="#"><span class="material-symbols-outlined">alternate_email</span></a>
+</div>
+<div class="pt-4">
+<p class="font-caption font-semibold">Experience AutoGreen App</p>
+<div class="flex gap-2 mt-2">
+<div class="h-8 w-24 bg-on-background rounded-md"></div>
+<div class="h-8 w-24 bg-on-background rounded-md"></div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<!-- Interactive Search FAB -->
+<div class="fixed bottom-8 right-8 z-40 md:hidden">
+<button class="w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+<script>
+        // Simple scroll behavior for header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-sm');
+            } else {
+                header.classList.remove('shadow-sm');
+            }
+        });
+    </script>
+</body></html>

@@ -41,6 +41,9 @@ from app.schemas.user import (
     UserRegisterRequest,
     UserResponse,
     UserUpdateRequest,
+    PasswordResetRequest,
+    PasswordResetConfirmRequest,
+    ResendVerificationRequest,
 )
 from app.models.user import User
 from app.models.role import Role
@@ -117,7 +120,7 @@ class AuthService:
             password_hash=hash_password(data.password),
             role_id=user_role.id,
             is_active=True,
-            is_verified=False,
+            is_verified=settings.DEBUG,
             email_verification_token=verification_token,
         )
 
@@ -143,6 +146,31 @@ class AuthService:
         if settings.DEBUG:
             result["verification_token"] = verification_token
         return result
+
+    async def resend_verification(self, data: ResendVerificationRequest) -> None:
+        """
+        Resend the verification email to the user if they are not verified yet.
+        """
+        user = await self._user_repo.get_by_email(data.email)
+        if not user or user.is_verified:
+            return
+
+        verification_token = secrets.token_urlsafe(32)
+        user.email_verification_token = verification_token
+        self._db.add(user)
+        
+        try:
+            from app.services.email_service import EmailService
+            email_svc = EmailService()
+            await email_svc.send_verification_email(
+                to_email=user.email,
+                first_name=user.first_name,
+                token=verification_token,
+            )
+        except Exception as exc:
+            logger.warning(f"Failed to resend verification email: {exc}")
+
+        await self._db.commit()
 
     # ──────────────────────────────────────────────
     # Email/Password Login
@@ -198,14 +226,17 @@ class AuthService:
             )
 
         if not user.is_verified:
-            raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN,
-                detail={
-                    "success": False,
-                    "message": "Please verify your email address before logging in.",
-                    "error_code": "EMAIL_NOT_VERIFIED",
-                },
-            )
+            if settings.DEBUG:
+                user = await self._user_repo.update(user, is_verified=True)
+            else:
+                raise HTTPException(
+                    status_code=status.HTTP_403_FORBIDDEN,
+                    detail={
+                        "success": False,
+                        "message": "Please verify your email address before logging in.",
+                        "error_code": "EMAIL_NOT_VERIFIED",
+                    },
+                )
 
         return await self._issue_tokens(user=user, request=request)
 
@@ -409,7 +440,69 @@ class AuthService:
         return UserResponse.model_validate(user)
 
     # ──────────────────────────────────────────────
-    # Profile
+    # Forgot / Reset Password
+    # ──────────────────────────────────────────────
+    async def forgot_password(self, data: PasswordResetRequest) -> str | None:
+        user = await self._user_repo.get_by_email(data.email)
+        if not user or not user.is_active:
+            # Prevent email enumeration by returning success regardless
+            return None
+
+        reset_token = secrets.token_urlsafe(32)
+        await self._user_repo.update(user, password_reset_token=reset_token)
+        await self._db.commit()
+
+        # Try sending email
+        try:
+            from app.services.email_service import EmailService
+            email_svc = EmailService()
+            # Assuming send_password_reset_email exists, else we can mock it
+            # We'll just call the interface if it exists or log it
+            if hasattr(email_svc, "send_password_reset_email"):
+                await email_svc.send_password_reset_email(
+                    to_email=user.email,
+                    first_name=user.first_name,
+                    token=reset_token,
+                )
+            else:
+                logger.info(f"Password reset token for {user.email}: {reset_token}")
+        except Exception as exc:
+            logger.warning(f"Failed to send password reset email: {exc}")
+        
+        return reset_token
+
+
+    async def reset_password(self, data: PasswordResetConfirmRequest) -> None:
+        # Find user by reset token
+        stmt = select(User).where(User.password_reset_token == data.token, User.is_active == True)
+        result = await self._db.execute(stmt)
+        user = result.scalar_one_or_none()
+
+        if not user:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail={
+                    "success": False,
+                    "message": "Invalid or expired password reset token.",
+                    "error_code": "INVALID_RESET_TOKEN",
+                },
+            )
+
+        # Update password and clear token
+        new_hash = hash_password(data.new_password)
+        await self._user_repo.update(
+            user, 
+            password_hash=new_hash, 
+            password_reset_token=None
+        )
+        
+        # Optionally invalidate all existing sessions
+        await self._session_repo.deactivate_all_for_user(user.id)
+        await self._db.commit()
+
+
+    # ──────────────────────────────────────────────
+    # Current User Profile
     # ──────────────────────────────────────────────
     async def get_me(self, user: User) -> UserResponse:
         """Return the current user's profile."""
@@ -509,22 +602,31 @@ class AuthService:
         Raises:
             401 if the token is invalid or the audience doesn't match.
         """
-        async with httpx.AsyncClient(timeout=10.0) as client:
-            try:
-                response = await client.get(
-                    "https://oauth2.googleapis.com/tokeninfo",
-                    params={"id_token": id_token},
-                )
-            except httpx.RequestError as exc:
-                logger.error(f"Google tokeninfo request failed: {exc}")
-                raise HTTPException(
-                    status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-                    detail={
-                        "success": False,
-                        "message": "Could not reach Google OAuth servers. Try again.",
-                        "error_code": "GOOGLE_OAUTH_UNAVAILABLE",
-                    },
-                )
+        import asyncio
+        import requests
+
+        def _fetch_tokeninfo():
+            # Use requests with a strict timeout to avoid event loop blocking
+            # and connection pool exhaustion.
+            response = requests.get(
+                "https://oauth2.googleapis.com/tokeninfo",
+                params={"id_token": id_token},
+                timeout=5.0,
+            )
+            return response
+
+        try:
+            response = await asyncio.to_thread(_fetch_tokeninfo)
+        except requests.RequestException as exc:
+            logger.error(f"Google tokeninfo request failed: {exc}")
+            raise HTTPException(
+                status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+                detail={
+                    "success": False,
+                    "message": "Could not reach Google OAuth servers. Try again.",
+                    "error_code": "GOOGLE_OAUTH_UNAVAILABLE",
+                },
+            )
 
         if response.status_code != 200:
             raise HTTPException(

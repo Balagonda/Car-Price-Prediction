@@ -26,6 +26,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   getCurrentUser,
@@ -215,7 +216,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
     ]
   );
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || ""}>
+      <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+    </GoogleOAuthProvider>
+  );
 }
 
 // ──────────────────────────────────────────────

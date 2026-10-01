@@ -85,3 +85,6 @@ class UserUpdateRequest(BaseSchema):
     first_name: str | None = Field(None, min_length=1, max_length=100)
     last_name: str | None = Field(None, min_length=1, max_length=100)
     profile_image_url: str | None = None
+
+class ResendVerificationRequest(BaseSchema):
+    email: EmailStr

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AutoGreen | Expert Car Valuation &amp; Market Prices</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#d1e4fb",
+                        "tertiary-fixed": "#e1e3e4",
+                        "on-surface-variant": "#3d4a3e",
+                        "on-tertiary-container": "#434546",
+                        "surface-bright": "#f3fcf1",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#6bfe9c",
+                        "tertiary": "#5c5f60",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2b322b",
+                        "inverse-primary": "#4ae183",
+                        "on-primary-fixed-variant": "#005228",
+                        "on-background": "#161d17",
+                        "tertiary-container": "#b1b3b4",
+                        "surface": "#f3fcf1",
+                        "outline-variant": "#bbcbbb",
+                        "outline": "#6c7b6d",
+                        "surface-dim": "#d4dcd2",
+                        "on-secondary-fixed": "#091d2e",
+                        "text-secondary": "#7F8C8D",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#e8f0e5",
+                        "primary": "#006d37",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#454748",
+                        "on-error-container": "#93000a",
+                        "background": "#f3fcf1",
+                        "on-primary-container": "#005027",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#4ae183",
+                        "error": "#ba1a1a",
+                        "primary-container": "#2ecc71",
+                        "surface-container-highest": "#dce5da",
+                        "on-primary-fixed": "#00210c",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-gray": "#F8F9FA",
+                        "on-secondary-container": "#526478",
+                        "on-tertiary-fixed": "#191c1d",
+                        "secondary-container": "#cfe2f9",
+                        "mint-soft": "#E9F7EF",
+                        "surface-container-high": "#e2ebe0",
+                        "secondary-fixed-dim": "#b5c8df",
+                        "secondary": "#4e6073",
+                        "surface-container-low": "#eef6eb",
+                        "on-surface": "#161d17",
+                        "tertiary-fixed-dim": "#c5c7c8",
+                        "surface-tint": "#006d37",
+                        "surface-variant": "#dce5da",
+                        "on-secondary-fixed-variant": "#36485b",
+                        "inverse-on-surface": "#ebf3e8",
+                        "link-blue": "#007BE5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "64px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "caption": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .mint-glow {
+            box-shadow: 0px 10px 30px rgba(46, 204, 113, 0.08);
+        }
+        .glass-nav {
+            backdrop-filter: blur(8px);
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface-container-lowest border-b border-surface-variant flex justify-between items-center px-4 md:px-16 h-16 max-w-[1440px] mx-auto left-1/2 -translate-x-1/2 glass-nav">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-bold text-primary">AutoGreen</span>
+<nav class="hidden lg:flex items-center gap-6 font-body-md text-body-md">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Used Cars</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">New Cars</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Sell Car</a>
+<a class="text-primary border-b-2 border-primary pb-1" href="#">Valuation</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Compare</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">News</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-2 text-on-surface-variant font-label-md">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span>City Selector</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">account_circle</span>
+</div>
+</header>
+<main class="pt-16">
+<!-- Hero Section -->
+<section class="relative min-h-[500px] flex items-center justify-center overflow-hidden bg-mint-soft py-20 px-4 md:px-16">
+<div class="max-w-container-max mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="space-y-6">
+<h1 class="font-display-lg text-display-lg text-primary">Check Used Car Valuation</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Know the right price for any car in seconds. Powered by real-time market data and advanced analytics for maximum transparency.</p>
+<div class="flex flex-wrap gap-4 pt-4">
+<div class="flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-primary/20 shadow-sm">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-label-md font-label-md">Ibb-Certified</span>
+</div>
+<div class="flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-primary/20 shadow-sm">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">speed</span>
+<span class="text-label-md font-label-md">Fast Process</span>
+</div>
+</div>
+</div>
+<!-- Valuation Form Card -->
+<div class="bg-white rounded-xl mint-glow p-8 border border-surface-variant relative z-10">
+<h3 class="font-headline-md text-headline-md mb-6 text-on-surface">Start Valuation</h3>
+<div class="space-y-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="text-caption font-label-md text-on-surface-variant">1. Select Brand</label>
+<select class="w-full bg-surface-container-low border-b-2 border-transparent focus:border-primary transition-all rounded-lg p-3 outline-none">
+<option>Select Brand</option>
+<option>Maruti Suzuki</option>
+<option>Hyundai</option>
+<option>Tata</option>
+<option>Toyota</option>
+</select>
+</div>
+<div class="space-y-1">
+<label class="text-caption font-label-md text-on-surface-variant">2. Model</label>
+<select class="w-full bg-surface-container-low border-b-2 border-transparent focus:border-primary transition-all rounded-lg p-3 outline-none">
+<option>Select Model</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="text-caption font-label-md text-on-surface-variant">3. Variant</label>
+<select class="w-full bg-surface-container-low border-b-2 border-transparent focus:border-primary transition-all rounded-lg p-3 outline-none">
+<option>Select Variant</option>
+</select>
+</div>
+<div class="space-y-1">
+<label class="text-caption font-label-md text-on-surface-variant">4. Year</label>
+<select class="w-full bg-surface-container-low border-b-2 border-transparent focus:border-primary transition-all rounded-lg p-3 outline-none">
+<option>Registration Year</option>
+<option>2024</option>
+<option>2023</option>
+<option>2022</option>
+<option>2021</option>
+</select>
+</div>
+</div>
+<div class="space-y-1">
+<label class="text-caption font-label-md text-on-surface-variant">5. Kms Driven</label>
+<input class="w-full bg-surface-container-low border-b-2 border-transparent focus:border-primary transition-all rounded-lg p-3 outline-none" placeholder="Enter kms driven" type="number"/>
+</div>
+<button class="w-full bg-primary-container hover:bg-primary text-white font-headline-md py-4 rounded-lg mt-4 transition-all shadow-lg active:scale-95">
+                            Get Valuation
+                        </button>
+</div>
+</div>
+</div>
+<!-- Decorative Background Element -->
+<div class="absolute -right-20 -bottom-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+</section>
+<!-- Curated Collections Section -->
+<section class="py-20 px-4 md:px-16 max-w-container-max mx-auto">
+<h2 class="font-headline-lg text-headline-lg mb-10 text-on-surface text-center">Curated Collections</h2>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+<!-- Budget -->
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-xl bg-surface-container-high flex flex-col items-center justify-center p-4 transition-all hover:bg-mint-soft border border-transparent hover:border-primary/20">
+<span class="material-symbols-outlined text-[40px] text-primary mb-3">payments</span>
+<span class="font-label-md text-label-md text-on-surface group-hover:text-primary">Budget</span>
+</div>
+</div>
+<!-- SUV -->
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-xl bg-surface-container-high flex flex-col items-center justify-center p-4 transition-all hover:bg-mint-soft border border-transparent hover:border-primary/20">
+<span class="material-symbols-outlined text-[40px] text-primary mb-3">csv</span>
+<span class="font-label-md text-label-md text-on-surface group-hover:text-primary">SUV</span>
+</div>
+</div>
+<!-- CNG -->
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-xl bg-surface-container-high flex flex-col items-center justify-center p-4 transition-all hover:bg-mint-soft border border-transparent hover:border-primary/20">
+<div class="w-12 h-12 mb-3 bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLveWZZJ4krjwEeAwxk0cMVosQPAqSqFnTCxH_o-15-FFFMoeXarwuOW_62egzYKIIWkbHOGvo7K2rBHwy7aDXsZII96DmWFl6ky4f8PI3IVKcQnXyhwmm3SLxh-3tcyuu6xAj8Fh1vXmmOupTVmgGy8ZyrEj08-2nv7749EySWH55oZukzirKlhtnQKdE9a6vM17f72DRJB1s0LBfCunNV3bhnkh-r-3gJLRudyGbCZp8th3KvtzaUKuKc')"></div>
+<span class="font-label-md text-label-md text-on-surface group-hover:text-primary">CNG</span>
+</div>
+</div>
+<!-- Automatic -->
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-xl bg-surface-container-high flex flex-col items-center justify-center p-4 transition-all hover:bg-mint-soft border border-transparent hover:border-primary/20">
+<div class="w-12 h-12 mb-3 bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLuD5lyQpWL8yxuqwsuPXnkjVH_Wvgkf42jyTB7zJe-SEztA6rMArZUJmrKMlW54UqJKfeIF37E4NXx3ELQI-i_da4jQ-u8YiGq6zW2lPgcl6_f9ZNEbxyrEN_fkFXeJ39pb77dBKU0ag5Grr6D6GIUnmLM5uVhnEvYZI8ReKMQubz-blfxCYurf_GRvJmI1Lc8_Ss4GJJQAJVffhejKZtrN5vdhWGdAY9S-rlF3rmSjWfP0unm2zF1SzsQ')"></div>
+<span class="font-label-md text-label-md text-on-surface group-hover:text-primary">Automatic</span>
+</div>
+</div>
+<!-- Electric -->
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-xl bg-surface-container-high flex flex-col items-center justify-center p-4 transition-all hover:bg-mint-soft border border-transparent hover:border-primary/20">
+<div class="w-12 h-12 mb-3 bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLvNqvgat2t_hDl5nSIppvmIagYycJN6DgGh3xa5lBHi0DMR-coAFjSS9UCSn4CpiKJEmg-Mc5uNaVTeT3VaB9Ji2Fr_-Wa1V4HBMi0lhIMgbluBEdOEZKU__FnjxRFiLK1fFxN3l3ptZZjkDyiRK3eL7jsQEMMkNt0eSzbtNa8XoOmdQ7XqlRkqKe_6mhwOUInYC9xFWO6GzoP0683m5jVM_E9djQqgMqORMWY4T1-iIBLnUnn5cdYQFoQ')"></div>
+<span class="font-label-md text-label-md text-on-surface group-hover:text-primary">Electric</span>
+</div>
+</div>
+<!-- Luxury -->
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-xl bg-surface-container-high flex flex-col items-center justify-center p-4 transition-all hover:bg-mint-soft border border-transparent hover:border-primary/20">
+<span class="material-symbols-outlined text-[40px] text-primary mb-3">diamond</span>
+<span class="font-label-md text-label-md text-on-surface group-hover:text-primary">Luxury</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Top Used Cars Price List Table -->
+<section class="py-20 px-4 md:px-16 bg-surface-gray">
+<div class="max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Top Used Cars Price List</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Current market price trends for popular models across India.</p>
+</div>
+<button class="flex items-center gap-2 text-primary font-label-md hover:underline">
+                        View All Listings
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="bg-white rounded-xl shadow-sm border border-surface-variant overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-surface-variant">
+<th class="p-6 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Used Cars Price List</th>
+<th class="p-6 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Second Hand Cars Price in India</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-variant">
+<tr class="hover:bg-mint-soft/30 transition-colors">
+<td class="p-6 font-body-md text-body-md font-semibold text-link-blue cursor-pointer">Maruti Suzuki Eeco</td>
+<td class="p-6 font-body-md text-body-md text-on-surface">₹12,000 - ₹14.15 Lakh*</td>
+</tr>
+<tr class="hover:bg-mint-soft/30 transition-colors">
+<td class="p-6 font-body-md text-body-md font-semibold text-link-blue cursor-pointer">Honda City</td>
+<td class="p-6 font-body-md text-body-md text-on-surface">₹30,000 - ₹17.60 Lakh*</td>
+</tr>
+<tr class="hover:bg-mint-soft/30 transition-colors">
+<td class="p-6 font-body-md text-body-md font-semibold text-link-blue cursor-pointer">Honda Brio</td>
+<td class="p-6 font-body-md text-body-md text-on-surface">₹1 Lakh - ₹4.95 Lakh*</td>
+</tr>
+<tr class="hover:bg-mint-soft/30 transition-colors">
+<td class="p-6 font-body-md text-body-md font-semibold text-link-blue cursor-pointer">BMW 3 Series</td>
+<td class="p-6 font-body-md text-body-md text-on-surface">₹3 Lakh - ₹84 Lakh*</td>
+</tr>
+<tr class="hover:bg-mint-soft/30 transition-colors">
+<td class="p-6 font-body-md text-body-md font-semibold text-link-blue cursor-pointer">Hyundai Santro Xing</td>
+<td class="p-6 font-body-md text-body-md text-on-surface">₹12,000 - ₹4 Lakh*</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Body Type Section -->
+<section class="py-20 px-4 md:px-16 max-w-container-max mx-auto">
+<h2 class="font-headline-lg text-headline-lg mb-10 text-on-surface">Browse by Body Type</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- SUV -->
+<div class="group bg-white rounded-xl p-8 text-center border border-surface-variant transition-all hover:mint-glow hover:-translate-y-1 cursor-pointer">
+<div class="w-16 h-16 mx-auto mb-6 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all text-primary">
+<span class="material-symbols-outlined text-[32px]">csv</span>
+</div>
+<h4 class="font-headline-md text-headline-md mb-2">SUV</h4>
+<p class="font-caption text-caption text-on-surface-variant">Robust &amp; Commanding Presence</p>
+</div>
+<!-- Hatchback -->
+<div class="group bg-white rounded-xl p-8 text-center border border-surface-variant transition-all hover:mint-glow hover:-translate-y-1 cursor-pointer">
+<div class="w-16 h-16 mx-auto mb-6 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all text-primary">
+<span class="material-symbols-outlined text-[32px]">directions_car</span>
+</div>
+<h4 class="font-headline-md text-headline-md mb-2">Hatchback</h4>
+<p class="font-caption text-caption text-on-surface-variant">Compact &amp; Efficient Commuter</p>
+</div>
+<!-- Sedan -->
+<div class="group bg-white rounded-xl p-8 text-center border border-surface-variant transition-all hover:mint-glow hover:-translate-y-1 cursor-pointer">
+<div class="w-16 h-16 mx-auto mb-6 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all text-primary">
+<span class="material-symbols-outlined text-[32px]">minor_crash</span>
+</div>
+<h4 class="font-headline-md text-headline-md mb-2">Sedan</h4>
+<p class="font-caption text-caption text-on-surface-variant">Elegant &amp; Professional Drive</p>
+</div>
+<!-- MUV -->
+<div class="group bg-white rounded-xl p-8 text-center border border-surface-variant transition-all hover:mint-glow hover:-translate-y-1 cursor-pointer">
+<div class="w-16 h-16 mx-auto mb-6 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all text-primary">
+<span class="material-symbols-outlined text-[32px]">shuffle</span>
+</div>
+<h4 class="font-headline-md text-headline-md mb-2">MUV</h4>
+<p class="font-caption text-caption text-on-surface-variant">Spacious for the Whole Family</p>
+</div>
+</div>
+</section>
+<!-- Newsletter / CTA -->
+<section class="py-20 px-4 md:px-16">
+<div class="max-w-container-max mx-auto bg-primary rounded-2xl p-12 text-white relative overflow-hidden text-center">
+<div class="relative z-10 max-w-2xl mx-auto space-y-6">
+<h2 class="font-display-lg text-headline-lg">Stay Updated with Market Trends</h2>
+<p class="font-body-md">Get the latest valuation reports and car market news delivered to your inbox every week.</p>
+<div class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+<input class="flex-grow rounded-lg p-4 text-on-surface outline-none" placeholder="Enter your email" type="email"/>
+<button class="bg-primary-fixed text-on-primary-fixed font-label-md px-8 py-4 rounded-lg hover:bg-opacity-90 transition-all">Subscribe</button>
+</div>
+</div>
+<!-- Background decoration -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-white/10 -rotate-45 translate-x-20 -translate-y-20"></div>
+<div class="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full -translate-x-10 translate-y-10"></div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container text-on-surface-variant mt-20">
+<div class="max-w-container-max mx-auto px-4 md:px-16 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<div class="space-y-4">
+<span class="font-headline-md text-headline-md font-bold text-primary">AutoGreen</span>
+<p class="font-caption text-caption leading-relaxed">© 2024 AutoGreen Marketplace. Driven by Transparency. Your trusted partner in car valuation and resale in the modern era.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary">face_nod</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary">language</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary">video_library</span>
+</div>
+</div>
+<div class="space-y-4">
+<h5 class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Company</h5>
+<ul class="space-y-2 font-caption text-caption">
+<li><a class="hover:text-primary hover:underline transition-all" href="#">About Us</a></li>
+<li><a class="hover:text-primary hover:underline transition-all" href="#">Contact Us</a></li>
+<li><a class="hover:text-primary hover:underline transition-all" href="#">Careers With Us</a></li>
+<li><a class="hover:text-primary hover:underline transition-all" href="#">Investors</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h5 class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Legal</h5>
+<ul class="space-y-2 font-caption text-caption">
+<li><a class="hover:text-primary hover:underline transition-all" href="#">Terms &amp; Conditions</a></li>
+<li><a class="hover:text-primary hover:underline transition-all" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary hover:underline transition-all" href="#">Corporate Policies</a></li>
+<li><a class="hover:text-primary hover:underline transition-all" href="#">FAQs</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h5 class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Solutions</h5>
+<ul class="space-y-2 font-caption text-caption">
+<li><a class="hover:text-primary hover:underline transition-all" href="#">Car Valuation Guide</a></li>
+<li><a class="hover:text-primary hover:underline transition-all" href="#">Dealer Solutions</a></li>
+<li><a class="hover:text-primary hover:underline transition-all" href="#">Advertise with Us</a></li>
+<li><a class="hover:text-primary hover:underline transition-all" href="#">Become Partner Dealer</a></li>
+</ul>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for the valuation form
+        const selects = document.querySelectorAll('select');
+        selects.forEach(select => {
+            select.addEventListener('focus', () => {
+                select.parentElement.classList.add('text-primary');
+            });
+            select.addEventListener('blur', () => {
+                select.parentElement.classList.remove('text-primary');
+            });
+        });
+    </script>
+</body></html>

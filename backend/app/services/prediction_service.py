@@ -215,7 +215,7 @@ class PredictionService:
         await self._db.commit()
 
         logger.info(
-            "✅ [PredictionService] Prediction %s created — ₹%.0f (%.1f%% confidence)",
+            "✅ [PredictionService] Prediction %s created — INR %.0f (%.1f%% confidence)",
             prediction_id,
             estimated_price,
             confidence_score,

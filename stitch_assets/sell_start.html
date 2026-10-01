@@ -1,0 +1,282 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>AutoGreen | Sell Your Car</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#d1e4fb",
+                        "surface-container-low": "#eef6eb",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#d4dcd2",
+                        "surface-container-high": "#e2ebe0",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#006d37",
+                        "surface": "#f3fcf1",
+                        "outline-variant": "#bbcbbb",
+                        "tertiary-container": "#b1b3b4",
+                        "surface-container": "#e8f0e5",
+                        "inverse-primary": "#4ae183",
+                        "surface-bright": "#f3fcf1",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#2ecc71",
+                        "inverse-on-surface": "#ebf3e8",
+                        "on-secondary-container": "#526478",
+                        "surface-container-highest": "#dce5da",
+                        "primary-fixed-dim": "#4ae183",
+                        "surface-gray": "#F8F9FA",
+                        "on-secondary-fixed-variant": "#36485b",
+                        "link-blue": "#007BE5",
+                        "on-tertiary-container": "#434546",
+                        "tertiary-fixed": "#e1e3e4",
+                        "on-background": "#161d17",
+                        "text-secondary": "#7F8C8D",
+                        "on-primary-fixed-variant": "#005228",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#dce5da",
+                        "mint-soft": "#E9F7EF",
+                        "on-secondary-fixed": "#091d2e",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#b5c8df",
+                        "inverse-surface": "#2b322b",
+                        "outline": "#6c7b6d",
+                        "background": "#f3fcf1",
+                        "secondary-container": "#cfe2f9",
+                        "on-surface": "#161d17",
+                        "tertiary-fixed-dim": "#c5c7c8",
+                        "on-surface-variant": "#3d4a3e",
+                        "primary-fixed": "#6bfe9c",
+                        "on-primary-container": "#005027",
+                        "on-primary-fixed": "#00210c",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#454748",
+                        "on-tertiary-fixed": "#191c1d",
+                        "tertiary": "#5c5f60",
+                        "primary": "#006d37",
+                        "secondary": "#4e6073"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "base": "8px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "caption": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #F8F9FA;
+            scroll-behavior: smooth;
+        }
+        .mint-glow {
+            box-shadow: 0px 10px 30px rgba(46, 204, 113, 0.08);
+        }
+        .glass-nav {
+            backdrop-filter: blur(8px);
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        .transition-standard {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 max-w-container-max mx-auto glass-nav border-b border-surface-variant dark:border-outline-variant">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-bold text-primary">AutoGreen</span>
+<nav class="hidden md:flex gap-6 items-center">
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-standard" href="#">Used Cars</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-standard" href="#">New Cars</a>
+<a class="font-body-md text-primary border-b-2 border-primary pb-1 font-semibold" href="#">Sell Car</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-standard" href="#">Valuation</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-standard" href="#">Compare</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-standard" href="#">News</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-surface-container-low transition-standard">
+<span class="material-symbols-outlined text-on-surface-variant">location_on</span>
+<span class="font-label-md text-on-surface-variant">City Selector</span>
+</button>
+<button class="material-symbols-outlined text-primary text-2xl">account_circle</button>
+</div>
+</header>
+<main class="pt-16">
+<!-- Hero Section -->
+<section class="relative overflow-hidden pt-12 md:pt-24 pb-12 md:pb-32 px-margin-mobile md:px-margin-desktop bg-surface-container-lowest">
+<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-gutter items-center">
+<div class="z-10">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-mint-soft rounded-full mb-6">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-primary font-label-md">Trusted by 10k+ Sellers</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-background mb-6 leading-tight">
+                        Get the Best Value <br><span class="text-primary">for Your Car</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-lg">
+                        Turn your car into cash in just 3 easy steps. Our transparent process ensures you get a fair market valuation and a hassle-free experience.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4 mb-12">
+
+<button class="px-8 py-4 border-2 border-primary text-primary font-label-md rounded-xl text-center hover:bg-mint-soft transition-standard">
+                            Check Valuation
+                        </button>
+</div>
+<div class="flex items-center gap-8 border-t border-surface-variant pt-8">
+<div class="flex flex-col">
+<span class="font-headline-md text-on-background">4.9/5</span>
+<span class="font-caption text-on-surface-variant">User Rating</span>
+</div>
+<div class="h-10 w-px bg-surface-variant"></div>
+<div class="flex flex-col">
+<span class="font-headline-md text-on-background">24h</span>
+<span class="font-caption text-on-surface-variant">Avg. Sale Time</span>
+</div>
+</div>
+</div>
+<div class="relative">
+<div class="absolute -top-12 -right-12 w-96 h-96 bg-primary opacity-5 rounded-full blur-3xl"></div>
+<div class="relative rounded-2xl overflow-hidden mint-glow border-4 border-white shadow-2xl transform rotate-1 md:rotate-2 hover:rotate-0 transition-standard duration-500">
+<img class="w-full h-auto object-cover" data-alt="A professional, high-quality photograph of a sleek, clean modern sedan parked in a bright, airy architectural setting with soft green accents. The lighting is crisp and natural, emphasizing the vehicle's pristine condition and reflecting a high-trust, premium automotive marketplace atmosphere. A cheerful person is visible in the distance, interacting with a smartphone, suggesting ease of use and a positive user experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUhUrT69-p5arEiJMSwHaHX1BT4MWrwJuHeJO5qHjtt2rzPcVByhSdPMP2mZlDPJ2DSoHyjTmd5B91BktQaP8dNbtjlUz1A3Ujs2VT9n-4hSJxKXkTPoZGje17EsnZ_J7AtjHfZqs3R-M_MyUr_LuyFXRJHpPmVwbAWviEmDp0xsqAhxm_394x2R-Cqc8Q94CLZ0mOKmfFv59adgZ-0oTO8iLsVPF_knQLdmNqi0ZQBQel9-ziJFWwbnKZqW7HMn3W8rXaSonCCfA">
+</div>
+<!-- Floating Badge -->
+<div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-4 border border-surface-variant">
+<div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center text-white">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<div>
+<p class="font-label-md text-on-background">Market Peak</p>
+<p class="font-caption text-on-surface-variant">Sell for 15% more today</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- How It Works Section -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop bg-surface-container-low" id="valuation-start">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-4">A Simple 3-Step Process</h2>
+<p class="font-body-md text-on-surface-variant max-w-2xl mx-auto">
+                        We've streamlined the selling experience to be fast, fair, and completely transparent. No hidden fees, just direct value.
+                    </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Step 1 -->
+<div class="group bg-white p-8 rounded-3xl border border-white hover:border-primary-container transition-standard shadow-sm hover:shadow-xl">
+<div class="w-16 h-16 bg-mint-soft rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-standard">
+<span class="material-symbols-outlined text-primary text-3xl">edit_note</span>
+</div>
+<h3 class="font-headline-md text-on-background mb-4">1. Core Specs</h3>
+<p class="font-body-md text-on-surface-variant mb-6">
+                            Tell us the basics: Year, Make, Model, and Mileage. We use real-time market data to start your appraisal.
+                        </p>
+<div class="flex items-center gap-2 text-primary font-label-md">
+<span class="">Step 1 of 3</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="group bg-white p-8 rounded-3xl border border-white hover:border-primary-container transition-standard shadow-sm hover:shadow-xl">
+<div class="w-16 h-16 bg-mint-soft rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-standard">
+<span class="material-symbols-outlined text-primary text-3xl">fact_check</span>
+</div>
+<h3 class="font-headline-md text-on-background mb-4">2. Condition</h3>
+<p class="font-body-md text-on-surface-variant mb-6">
+                            Answer a few quick questions about your car's history and current state to refine the valuation accurately.
+                        </p>
+<div class="flex items-center gap-2 text-on-surface-variant opacity-50 font-label-md">
+<span class="">Step 2 of 3</span>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="group bg-white p-8 rounded-3xl border border-white hover:border-primary-container transition-standard shadow-sm hover:shadow-xl">
+<div class="w-16 h-16 bg-mint-soft rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-standard">
+<span class="material-symbols-outlined text-primary text-3xl">photo_camera</span>
+</div>
+<h3 class="font-headline-md text-on-background mb-4">3. Images</h3>
+<p class="font-body-md text-on-surface-variant mb-6">
+                            Upload photos to showcase your car. High-quality images help you get verified faster and attract better offers.
+                        </p>
+<div class="flex items-center gap-2 text-on-surface-variant opacity-50 font-label-md">
+<span class="">Step 3 of 3</span>
+</div>
+</div>
+</div>
+<!-- Final CTA to Lead into Image 2 Flow -->
+<div class="mt-20 flex justify-center">
+<div class="bg-white p-10 rounded-3xl shadow-2xl border border-surface-variant flex flex-col md:flex-row items-center gap-12 max-w-4xl w-full">
+<div class="w-full md:w-1/2">
+<img alt="Core Specs Flow" class="rounded-xl w-full shadow-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2o-ddewckD7eQs_J39bjqA6TM0r89KwxLw-nUV8dUd8auayUMTBVQyJuJEXQYnX6KHgnFzQYt1VS32WnIj-EmTjPtkefnWr2i-abZCI92t8zql7KX4u8vcvUgGqE0PpgY02fkaD0fgdPA9xkfD693GVNmjjBKkr6XYmCRaWnl5FmsfnUCwJWPvSxwo28aEGu9rsfa5_gNuF77QHoUbP3NfnFkyJldsFkwx_yhMIH2BERwn40HXIPrz-CDUZsYjZxvQ_KDPPE6hEs">
+</div>
+<div class="w-full md:w-1/2">
+<h3 class="font-headline-md text-on-background mb-4">Ready to start?</h3>
+<p class="font-body-md text-on-surface-variant mb-8">
+                                Enter your details to see what your car is worth in today's market. It only takes 2 minutes to get your first estimate.
+                            </p>
+<button class="w-full py-4 bg-primary text-on-primary font-label-md rounded-xl hover:bg-primary-container transition-standard" onclick="window.location.hash = '#valuation-start'">
+                                Get Your Valuation Now
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust / Benefits Section -->
+
+</main>
+<!-- Footer -->
+
+<script>
+        // Micro-interaction for scroll effects
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('header');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-sm');
+            } else {
+                nav.classList.remove('shadow-sm');
+            }
+        });
+    </script>
+
+
+</body></html>

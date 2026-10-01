@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Luxury Used Cars Collection | AutoGreen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#d1e4fb",
+                        "tertiary-fixed": "#e1e3e4",
+                        "on-surface-variant": "#3d4a3e",
+                        "on-tertiary-container": "#434546",
+                        "surface-bright": "#f3fcf1",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#6bfe9c",
+                        "tertiary": "#5c5f60",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2b322b",
+                        "inverse-primary": "#4ae183",
+                        "on-primary-fixed-variant": "#005228",
+                        "on-background": "#161d17",
+                        "tertiary-container": "#b1b3b4",
+                        "surface": "#f3fcf1",
+                        "outline-variant": "#bbcbbb",
+                        "outline": "#6c7b6d",
+                        "surface-dim": "#d4dcd2",
+                        "on-secondary-fixed": "#091d2e",
+                        "text-secondary": "#7F8C8D",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#e8f0e5",
+                        "primary": "#006d37",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#454748",
+                        "on-error-container": "#93000a",
+                        "background": "#f3fcf1",
+                        "on-primary-container": "#005027",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#4ae183",
+                        "error": "#ba1a1a",
+                        "primary-container": "#2ecc71",
+                        "surface-container-highest": "#dce5da",
+                        "on-primary-fixed": "#00210c",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-gray": "#F8F9FA",
+                        "on-secondary-container": "#526478",
+                        "on-tertiary-fixed": "#191c1d",
+                        "secondary-container": "#cfe2f9",
+                        "mint-soft": "#E9F7EF",
+                        "surface-container-high": "#e2ebe0",
+                        "secondary-fixed-dim": "#b5c8df",
+                        "secondary": "#4e6073",
+                        "surface-container-low": "#eef6eb",
+                        "on-surface": "#161d17",
+                        "tertiary-fixed-dim": "#c5c7c8",
+                        "surface-tint": "#006d37",
+                        "surface-variant": "#dce5da",
+                        "on-secondary-fixed-variant": "#36485b",
+                        "inverse-on-surface": "#ebf3e8",
+                        "link-blue": "#007BE5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "64px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "caption": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .mint-glow-hover:hover {
+            box-shadow: 0px 10px 30px rgba(46, 204, 113, 0.08);
+        }
+        .glass-nav {
+            backdrop-filter: blur(8px);
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .premium-border {
+            border: 1px solid #F8F9FA;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 max-w-container-max mx-auto glass-nav shadow-sm">
+<div class="flex items-center gap-8">
+<a class="font-headline-md text-headline-md font-bold text-primary" href="#">AutoGreen</a>
+<nav class="hidden md:flex gap-6 items-center">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Used Cars</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">New Cars</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Sell Car</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Valuation</a>
+<a class="font-body-md text-body-md text-primary border-b-2 border-primary pb-1" href="#">Compare</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">News</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined">location_on</span>
+<span class="font-label-md text-label-md">City Selector</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+</button>
+</div>
+</header>
+<main class="mt-16 pt-base">
+<!-- Breadcrumbs -->
+<section class="max-w-container-max mx-auto px-margin-desktop py-base">
+<nav class="flex items-center gap-2 font-caption text-caption text-on-surface-variant">
+<a class="hover:text-primary" href="#">Home</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary" href="#">Used Cars</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-semibold">Luxury</span>
+</nav>
+</section>
+<!-- Hero Section -->
+<section class="max-w-container-max mx-auto px-margin-desktop py-12">
+<div class="flex flex-col md:flex-row justify-between items-end gap-gutter">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-background mb-4">Luxury Used Cars</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">Premium comfort and class at the best prices. Experience the pinnacle of automotive engineering with our curated selection.</p>
+</div>
+<div class="hidden lg:block">
+<img class="w-64 h-40 object-cover rounded-xl premium-border shadow-sm" data-alt="A high-end luxury lifestyle photography composition featuring a sharp, professional person standing next to a sleek executive car in a bright, modern architectural environment. The lighting is soft and airy, reflecting the light green and white color palette of the AutoGreen brand. The image conveys success, transparency, and a premium concierge-level experience in the automotive world." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1y66uljXS2TAjFdkmLHDid1OSIhJSC25_l2J1kq3E2pxMMrJh11avY6e2FZpztM4An-1Td_GOkD-zWdyBgu1kTslKzg_ZpaqDYM1xeUXAXvNntGveK7b_O8yfwcIkswB8x4gw5SeQvPRsIhWk24tMoy1FQ_jscZAk_RlhL7thAGkyAnlR5M16F6iHsm-yBAw1TH15zbrirnVqZTQ8Y9GMbD7ENvIPPNm3QyawzrowTieRP9ROUB9K"/>
+</div>
+</div>
+</section>
+<!-- Featured Listings Bento Grid -->
+<section class="max-w-container-max mx-auto px-margin-desktop py-12">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Main Feature (Jaguar XJ) -->
+<div class="md:col-span-8 bg-surface-container-lowest rounded-xl overflow-hidden premium-border mint-glow-hover transition-all duration-300 group">
+<div class="relative h-80">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida/AP1WRLuFVjmRWn77UtlnykWWWNvmCHW0C77juMJlgadQViJl64KZiLYhN9CAfW3T00sc3AYnikD9_e_YZbSxGaQZqdNKprj_huP4hHMQQwKKs9odyHmdW4cQ5VwATkJ2ykY-NhoeWwBL9L-PecNjs_LLTezgW1zhrJwWHkdC8SNYFCYy491wdrLLHDpJOP5PY1M-t2SCF1LlN7KIGanG8TLP4nP-xlEt_4towM6Yv5Bw28jMCOMpoZkmB5reG-k"/>
+<div class="absolute top-4 left-4 bg-primary text-on-primary px-4 py-1 rounded-full font-label-md text-label-md shadow-sm">Certified Luxury</div>
+</div>
+<div class="p-8 flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-background mb-2">Jaguar XJ L Portfolio</h3>
+<div class="flex gap-4 mb-4">
+<span class="bg-mint-soft text-primary px-3 py-1 rounded-full font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">speed</span> 24,000 km
+                                </span>
+<span class="bg-mint-soft text-primary px-3 py-1 rounded-full font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">local_gas_station</span> Petrol
+                                </span>
+</div>
+</div>
+<div class="text-right">
+<p class="font-headline-md text-headline-md text-primary font-bold">₹72.50 Lakh</p>
+<p class="font-caption text-caption text-on-surface-variant">Estimated EMI: ₹1,12,000/mo</p>
+</div>
+</div>
+</div>
+<!-- Secondary (Range Rover Velar) -->
+<div class="md:col-span-4 bg-surface-container-lowest rounded-xl overflow-hidden premium-border mint-glow-hover transition-all duration-300">
+<div class="h-48">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLtZEQgTwPJdJCnpKx4Tbsg_eJHmtWxuEAJnaIHWyyvqxvhGLH2sFRdiHSVsOnOBYlKh3hZuL6b9lWE5u9jInWFEj_ffXUIbH-i0F8O9Wv_oStPhTflyIN4BGYYEafZL9Zv9I9rqvISNAQcoR5QNbbw2MHtIZamUz16U1lZfculYbzyglWk3dHrRtenn2YNLdsHn1bzGdqjzXTXkXNAeM3vMGEW86c3tj7_TfWS0Jk-cRqqhmtHy_2vI_Qc"/>
+</div>
+<div class="p-6">
+<h3 class="font-headline-md text-headline-md text-on-background mb-2">Range Rover Velar</h3>
+<p class="font-headline-md text-headline-md text-primary font-bold mb-4">₹84.20 Lakh</p>
+<div class="grid grid-cols-2 gap-2">
+<button class="bg-primary text-on-primary font-label-md text-label-md py-3 rounded-lg hover:bg-primary-container transition-colors">View Details</button>
+<button class="border border-primary text-primary font-label-md text-label-md py-3 rounded-lg hover:bg-mint-soft transition-colors">Compare</button>
+</div>
+</div>
+</div>
+<!-- Triple Grid Items -->
+<div class="md:col-span-4 bg-surface-container-lowest rounded-xl overflow-hidden premium-border mint-glow-hover transition-all duration-300">
+<div class="h-48">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLvxE4WaWdcHN-A014NZWpI4VgeCbK0KrFPgZRFpuyVw04_-hh_ijjpdG1yXXKs9Dtd7kRK5CAUkA3uHo-8SUDvwmszbtiuJYNxQXgmFntC0Vj_nryEn9fu0kLrUY6WhJc_c5QKdzyqkth31HdrygDryvcdJlikvEAKDjrFdF2phkmuyOy_qOtO0Kym_ASPyHlHzoxo6kwkKIJsJll8lbU47hqOx1U7bRPLJpmeL_-2EO84BOyIPQoLKvXE"/>
+</div>
+<div class="p-6">
+<h4 class="font-body-lg font-bold text-on-background">Jaguar F-Pace S</h4>
+<p class="text-primary font-bold mt-1">₹68.00 Lakh</p>
+<div class="flex gap-2 mt-3">
+<span class="text-caption font-caption text-on-surface-variant">2021 Model</span>
+<span class="text-caption font-caption text-on-surface-variant">•</span>
+<span class="text-caption font-caption text-on-surface-variant">1st Owner</span>
+</div>
+</div>
+</div>
+<div class="md:col-span-4 bg-surface-container-lowest rounded-xl overflow-hidden premium-border mint-glow-hover transition-all duration-300">
+<div class="h-48">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLvBq4ycTEPBm06XkxNmgJE_Y7vBYnwMnYCtpQtj-Vi7G8N95SWulKL69IDm4poxbP3Y4r2gbpBIAy47L83u-KvODP_M0XpeLxKnViU3T8U5mnd8NR0zq4CnR2M5aQPIeBNukMijSidy_KXfcMusUIYsjjatqBpT4dBXEU1A-X5aAHcHBQ3d0ESKQxQKbhHuy7_73IIT0FHWhrQGHa7fSYxm1t72ptQiQG11ZtSIkNZZ_0Y2xwvcQePmVYQ"/>
+</div>
+<div class="p-6">
+<h4 class="font-body-lg font-bold text-on-background">Volvo S90 Inscription</h4>
+<p class="text-primary font-bold mt-1">₹45.75 Lakh</p>
+<div class="flex gap-2 mt-3">
+<span class="text-caption font-caption text-on-surface-variant">2022 Model</span>
+<span class="text-caption font-caption text-on-surface-variant">•</span>
+<span class="text-caption font-caption text-on-surface-variant">Hybrid</span>
+</div>
+</div>
+</div>
+<div class="md:col-span-4 bg-surface-container-lowest rounded-xl overflow-hidden premium-border mint-glow-hover transition-all duration-300 flex flex-col justify-center items-center text-center p-8 bg-mint-soft">
+<span class="material-symbols-outlined text-primary text-[48px] mb-4">stars</span>
+<h4 class="font-headline-md text-headline-md text-on-background mb-2">View All 457 Luxury Units</h4>
+<p class="font-body-md text-on-surface-variant mb-6">Explore the full collection of verified luxury sedans and SUVs.</p>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all">Explore Collection</button>
+</div>
+</div>
+</section>
+<!-- Detailed Specifications Table Section -->
+<section class="max-w-container-max mx-auto px-margin-desktop py-20">
+<div class="bg-surface-container-lowest rounded-2xl p-10 premium-border shadow-sm">
+<div class="flex justify-between items-center mb-10">
+<h2 class="font-headline-lg text-headline-lg text-on-background">Premium Comparison Table</h2>
+<div class="flex gap-2">
+<button class="bg-primary-container text-on-primary-container px-4 py-2 rounded-lg font-label-md text-label-md">Detailed Specs</button>
+<button class="bg-surface-container text-on-surface-variant px-4 py-2 rounded-lg font-label-md text-label-md">Features</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full border-collapse">
+<thead>
+<tr class="border-b border-surface-variant">
+<th class="text-left py-4 px-6 font-label-md text-label-md text-on-surface-variant uppercase">Model Detail</th>
+<th class="text-left py-4 px-6 font-label-md text-label-md text-on-surface-variant uppercase">Engine</th>
+<th class="text-left py-4 px-6 font-label-md text-label-md text-on-surface-variant uppercase">Mileage (km)</th>
+<th class="text-left py-4 px-6 font-label-md text-label-md text-on-surface-variant uppercase">Transmission</th>
+<th class="text-left py-4 px-6 font-label-md text-label-md text-on-surface-variant uppercase">Market Value</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-variant">
+<tr class="hover:bg-mint-soft transition-colors group">
+<td class="py-6 px-6">
+<div class="font-body-md font-bold text-on-background">Jaguar XJ L 3.0 Portfolio</div>
+<div class="text-caption font-caption text-on-surface-variant">2019 • Black Amethyst</div>
+</td>
+<td class="py-6 px-6 font-body-md">2993cc V6 Diesel</td>
+<td class="py-6 px-6 font-body-md">24,000</td>
+<td class="py-6 px-6 font-body-md">8-Speed Automatic</td>
+<td class="py-6 px-6 font-body-md font-bold text-primary">₹72.50 Lakh</td>
+</tr>
+<tr class="hover:bg-mint-soft transition-colors group">
+<td class="py-6 px-6">
+<div class="font-body-md font-bold text-on-background">Range Rover Velar D180</div>
+<div class="text-caption font-caption text-on-surface-variant">2020 • Fuji White</div>
+</td>
+<td class="py-6 px-6 font-body-md">1999cc Diesel</td>
+<td class="py-6 px-6 font-body-md">18,500</td>
+<td class="py-6 px-6 font-body-md">9-Speed Automatic</td>
+<td class="py-6 px-6 font-body-md font-bold text-primary">₹84.20 Lakh</td>
+</tr>
+<tr class="hover:bg-mint-soft transition-colors group">
+<td class="py-6 px-6">
+<div class="font-body-md font-bold text-on-background">Volvo S90 D4 Inscription</div>
+<div class="text-caption font-caption text-on-surface-variant">2019 • Mussel Blue</div>
+</td>
+<td class="py-6 px-6 font-body-md">1969cc Diesel</td>
+<td class="py-6 px-6 font-body-md">67,000</td>
+<td class="py-6 px-6 font-body-md">Geartronic Automatic</td>
+<td class="py-6 px-6 font-body-md font-bold text-primary">₹24.00 Lakh</td>
+</tr>
+<tr class="hover:bg-mint-soft transition-colors group">
+<td class="py-6 px-6">
+<div class="font-body-md font-bold text-on-background">BMW 3 Series 330 Li</div>
+<div class="text-caption font-caption text-on-surface-variant">2022 • Mineral White</div>
+</td>
+<td class="py-6 px-6 font-body-md">1998cc Petrol</td>
+<td class="py-6 px-6 font-body-md">7,287</td>
+<td class="py-6 px-6 font-body-md">Steptronic Sport</td>
+<td class="py-6 px-6 font-body-md font-bold text-primary">₹40.00 Lakh</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Valuation Gauge Custom Component -->
+<section class="max-w-container-max mx-auto px-margin-desktop py-20 flex flex-col md:flex-row items-center gap-20">
+<div class="flex-1">
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-6">Market Value Trust Analysis</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">We use AI-driven market data to ensure you get the most transparent pricing. Our luxury collection is currently valued at 4.2% below average showroom resale prices.</p>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<div>
+<p class="font-body-md font-bold">175-Point Inspection</p>
+<p class="font-caption text-on-surface-variant">Every luxury vehicle undergoes rigorous certification by our master technicians.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">shield</span>
+<div>
+<p class="font-body-md font-bold">12-Month Extended Warranty</p>
+<p class="font-caption text-on-surface-variant">Drive with peace of mind knowing you're covered for the first year of ownership.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="relative w-full max-w-md aspect-square flex flex-col items-center justify-center">
+<!-- Semi-circular gradient gauge representation -->
+<div class="relative w-64 h-32 overflow-hidden">
+<div class="absolute top-0 left-0 w-64 h-64 border-[16px] border-surface-variant rounded-full"></div>
+<div class="absolute top-0 left-0 w-64 h-64 border-[16px] border-t-primary border-r-primary border-l-transparent border-b-transparent rounded-full rotate-45"></div>
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center">
+<span class="font-display-lg text-display-lg text-primary">Excellent</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Market Value Ranking</span>
+</div>
+</div>
+<div class="mt-8 flex gap-8">
+<div class="text-center">
+<p class="font-headline-md text-headline-md text-primary font-bold">98%</p>
+<p class="font-caption text-caption text-on-surface-variant">Trust Score</p>
+</div>
+<div class="text-center">
+<p class="font-headline-md text-headline-md text-primary font-bold">4.2/5</p>
+<p class="font-caption text-caption text-on-surface-variant">User Rating</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container mt-20 w-full py-12 px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter max-w-container-max mx-auto">
+<div class="flex flex-col gap-4">
+<a class="font-headline-md text-headline-md font-bold text-primary" href="#">AutoGreen</a>
+<p class="font-caption text-caption text-on-surface-variant max-w-xs">© 2024 AutoGreen Marketplace. Driven by Transparency.</p>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="font-label-md text-label-md text-on-surface uppercase mb-2">Company</h5>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">About Us</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Contact Us</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Careers With Us</a>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="font-label-md text-label-md text-on-surface uppercase mb-2">Services</h5>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Car Valuation Guide</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Dealer Solutions</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Finance Options</a>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="font-label-md text-label-md text-on-surface uppercase mb-2">Legal</h5>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Terms &amp; Conditions</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Privacy Policy</a>
+<div class="flex gap-4 mt-4">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">public</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">chat</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">play_circle</span>
+</div>
+</div>
+</footer>
+<!-- FAB -->
+<button class="fixed bottom-8 right-8 bg-primary-container text-on-primary-container w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform z-40">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 32px;">support_agent</span>
+</button>
+<script>
+        // Micro-interactions for table rows
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.style.transform = 'translateX(4px)';
+                row.style.transition = 'transform 0.2s ease';
+            });
+            row.addEventListener('mouseleave', () => {
+                row.style.transform = 'translateX(0)';
+            });
+        });
+
+        // Sticky header opacity adjustment on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-md');
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            } else {
+                header.classList.remove('shadow-md');
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+            }
+        });
+    </script>
+</body></html>

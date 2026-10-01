@@ -110,9 +110,9 @@ class CVRepository:
         )
         await self._db.execute(stmt)
 
-        logger.debug(
-            "💾 [CVRepository] Updated Prediction %s CV summary — "
-            "damage=%s severity=%s cost=₹%.0f",
+        logger.info(
+            "💾 [CVRepo] Updated CV data for prediction_id=%s — "
+            "damage=%s severity=%s cost=INR %.0f",
             prediction_id,
             cv_damage_detected,
             cv_damage_severity,

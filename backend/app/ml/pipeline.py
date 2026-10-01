@@ -41,11 +41,11 @@ logger = logging.getLogger(__name__)
 TARGET_COLUMN = "selling_price"
 REQUIRED_COLUMNS = {
     "brand", "model", "manufacturing_year", "fuel_type",
-    "transmission", "owner_type", "seller_type", "kilometers_driven",
+    "transmission", "owner_type", "kilometers_driven",
     TARGET_COLUMN,
 }
 OPTIONAL_COLUMNS = {
-    "engine_cc", "mileage_kmpl", "max_power_bhp", "seats", "city", "category",
+    "seller_type", "engine_cc", "mileage_kmpl", "max_power_bhp", "seats", "city", "category",
 }
 
 CATEGORICAL_FEATURES = [
@@ -228,13 +228,26 @@ class MLPipeline:
         # Normalize column names
         df.columns = [c.strip().lower().replace(" ", "_") for c in df.columns]
 
+        # Extract brand and model from car_name if present
+        if "car_name" in df.columns:
+            # "Maruti Swift" -> brand="Maruti", model="Swift"
+            df["brand"] = df["car_name"].apply(lambda x: str(x).split(" ")[0] if pd.notnull(x) else "Unknown")
+            df["model"] = df["car_name"].apply(lambda x: " ".join(str(x).split(" ")[1:]) if pd.notnull(x) else "Unknown")
+            df = df.drop(columns=["car_name"])
+
         # Map common alternative column names
         rename_map = {
             "name": "model",
             "year": "manufacturing_year",
+            "distance": "kilometers_driven",
             "km_driven": "kilometers_driven",
+            "owner": "owner_type",
             "seller_type": "seller_type",
             "fuel": "fuel_type",
+            "location": "city",
+            "drive": "transmission",
+            "type": "category",
+            "price": "selling_price",
         }
         df = df.rename(columns={k: v for k, v in rename_map.items() if k in df.columns})
 
@@ -269,7 +282,7 @@ class MLPipeline:
                 df[col] = df[col].fillna(df[col].median())
 
         # Fill optional categorical columns
-        for col in ["city", "category"]:
+        for col in ["city", "category", "seller_type"]:
             if col not in df.columns:
                 df[col] = "Unknown"
             else:

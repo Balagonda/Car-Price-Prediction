@@ -17,7 +17,7 @@ from __future__ import annotations
 import uuid
 from pathlib import Path
 
-
+from pydantic import BaseModel
 from fastapi import APIRouter, HTTPException, status, BackgroundTasks, UploadFile, File, Form
 
 from app.api.v1.dependencies import AdminUser, DBSession  # noqa: F401
@@ -389,3 +389,36 @@ async def upload_dataset(
         message="Dataset uploaded successfully.",
         data=DatasetUploadResponse(**result)
     )
+
+class CleanDatasetRequest(BaseModel):
+    dataset_path: str
+
+@router.post(
+    "/datasets/clean",
+    response_model=APIResponse[dict],
+    summary="Clean Dataset File",
+    description="Loads a raw dataset, runs the _load_and_clean pipeline, and overwrites or saves a cleaned copy."
+)
+async def clean_dataset(
+    data: CleanDatasetRequest,
+    current_user: AdminUser,
+) -> APIResponse[dict]:
+    dataset_path = Path(data.dataset_path)
+    if not dataset_path.exists():
+        raise HTTPException(status_code=400, detail={"message": "File not found"})
+        
+    try:
+        from app.ml.pipeline import MLPipeline
+        pipeline = MLPipeline(Path("temp_artifacts"))
+        df = pipeline._load_and_clean(dataset_path)
+        
+        cleaned_path = dataset_path.parent / (dataset_path.stem + "_cleaned" + dataset_path.suffix)
+        df.to_csv(cleaned_path, index=False)
+        
+        return APIResponse(
+            success=True,
+            message=f"Dataset cleaned and saved to {cleaned_path.name}",
+            data={"cleaned_path": str(cleaned_path), "rows": len(df)}
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail={"message": str(e)})

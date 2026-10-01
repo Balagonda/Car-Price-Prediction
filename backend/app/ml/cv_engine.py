@@ -266,7 +266,7 @@ class CVEngine:
 
         logger.info(
             "🔍 [CVEngine] Analysis complete — angle=%s vehicle=%s type=%s "
-            "severity=%s damaged_parts=%d repair=₹%.0f",
+            "severity=%s damaged_parts=%d repair=INR %.0f",
             angle,
             vehicle_detected,
             vehicle_type,
@@ -718,8 +718,15 @@ class CVEngine:
         Raises:
             CVValidationError: if decoding fails.
         """
-        nparr = np.frombuffer(image_bytes, np.uint8)
-        bgr = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+        if not image_bytes:
+            raise CVValidationError("Cannot decode empty image bytes.")
+
+        bgr = None
+        try:
+            nparr = np.frombuffer(image_bytes, np.uint8)
+            bgr = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+        except Exception:
+            bgr = None
 
         if bgr is None:
             # Fallback via Pillow

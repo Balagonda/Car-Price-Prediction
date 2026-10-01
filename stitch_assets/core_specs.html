@@ -1,0 +1,366 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>AutoGreen - List Your Vehicle</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#ffdad6",
+                    "outline": "#6c7b6d",
+                    "on-secondary-fixed-variant": "#36485b",
+                    "surface-container-low": "#eef6eb",
+                    "on-tertiary-fixed": "#191c1d",
+                    "tertiary-container": "#b1b3b4",
+                    "surface-gray": "#F8F9FA",
+                    "on-secondary": "#ffffff",
+                    "primary": "#006d37",
+                    "on-tertiary-container": "#434546",
+                    "on-surface-variant": "#3d4a3e",
+                    "on-primary-container": "#005027",
+                    "surface-container-lowest": "#ffffff",
+                    "background": "#f3fcf1",
+                    "surface-container-highest": "#dce5da",
+                    "secondary-fixed": "#d1e4fb",
+                    "secondary-container": "#cfe2f9",
+                    "inverse-surface": "#2b322b",
+                    "surface": "#f3fcf1",
+                    "primary-fixed": "#6bfe9c",
+                    "on-secondary-fixed": "#091d2e",
+                    "secondary": "#4e6073",
+                    "on-secondary-container": "#526478",
+                    "text-secondary": "#7F8C8D",
+                    "on-primary": "#ffffff",
+                    "mint-soft": "#E9F7EF",
+                    "surface-bright": "#f3fcf1",
+                    "on-primary-fixed-variant": "#005228",
+                    "surface-dim": "#d4dcd2",
+                    "primary-fixed-dim": "#4ae183",
+                    "inverse-primary": "#4ae183",
+                    "on-surface": "#161d17",
+                    "surface-container-high": "#e2ebe0",
+                    "surface-container": "#e8f0e5",
+                    "inverse-on-surface": "#ebf3e8",
+                    "tertiary": "#5c5f60",
+                    "on-error": "#ffffff",
+                    "on-background": "#161d17",
+                    "surface-tint": "#006d37",
+                    "secondary-fixed-dim": "#b5c8df",
+                    "tertiary-fixed-dim": "#c5c7c8",
+                    "on-primary-fixed": "#00210c",
+                    "on-tertiary-fixed-variant": "#454748",
+                    "outline-variant": "#bbcbbb",
+                    "on-tertiary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "link-blue": "#007BE5",
+                    "tertiary-fixed": "#e1e3e4",
+                    "primary-container": "#2ecc71",
+                    "surface-variant": "#dce5da",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "base": "8px",
+                    "container-max": "1280px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "caption": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .progress-line {
+            background: linear-gradient(to right, #006d37 33%, #dce5da 33%);
+        }
+        input, select {
+            appearance: none;
+            background-image: none !important;
+        }
+        .custom-select-arrow {
+            pointer-events: none;
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md text-body-md">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md shadow-sm">
+<div class="flex justify-between items-center h-20 px-margin-desktop max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary">AutoGreen</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-secondary hover:text-primary transition-colors font-body-md text-body-md" href="#">Valuation</a>
+<a class="text-secondary hover:text-primary transition-colors font-body-md text-body-md" href="#">How it Works</a>
+<a class="text-secondary hover:text-primary transition-colors font-body-md text-body-md" href="#">Buy Cars</a>
+<a class="text-secondary hover:text-primary transition-colors font-body-md text-body-md" href="#">Sell Cars</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-6 py-2 rounded-full font-label-md text-label-md text-secondary hover:bg-mint-soft transition-colors">Log In</button>
+<button class="px-6 py-2 rounded-full font-label-md text-label-md bg-primary-container text-on-primary-container font-bold hover:opacity-90 transition-opacity">Get Started</button>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-20 px-margin-mobile md:px-margin-desktop">
+<div class="max-w-4xl mx-auto">
+<!-- Stepper Progress Header -->
+<div class="mb-12">
+<div class="relative w-full h-1 bg-surface-container-highest rounded-full mb-8">
+<div class="absolute top-0 left-0 h-full w-1/3 bg-primary rounded-full transition-all duration-500"></div>
+</div>
+<div class="flex justify-between items-start">
+<!-- Step 1 -->
+<div class="flex flex-col items-center gap-3 w-32">
+<div class="w-12 h-12 rounded-full border-2 border-primary bg-mint-soft flex items-center justify-center text-primary font-bold">1</div>
+<span class="font-label-md text-label-md text-primary">Core Specs</span>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center gap-3 w-32 opacity-50">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant font-bold">2</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Condition</span>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center gap-3 w-32 opacity-50">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant font-bold">3</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Images</span>
+</div>
+</div>
+</div>
+<!-- Form Card -->
+<div class="bg-white rounded-3xl shadow-sm overflow-hidden border border-surface-container">
+<div class="p-8 md:p-12">
+<div class="mb-10">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Core Specs</h1>
+<p class="text-on-surface-variant font-body-md text-body-md">Provide the basic details of your vehicle to get an accurate valuation.</p>
+</div>
+<form class="grid grid-cols-1 md:grid-cols-2 gap-x-gutter gap-y-8">
+<!-- Brand -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface block">Brand</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border-none rounded-xl py-4 px-4 text-on-surface focus:ring-2 focus:ring-primary-container transition-all">
+<option disabled="" selected="">Select Brand</option>
+<option>Toyota</option>
+<option>Honda</option>
+<option>Tesla</option>
+<option>BMW</option>
+</select>
+<span class="material-symbols-outlined custom-select-arrow text-on-surface-variant">keyboard_arrow_down</span>
+</div>
+</div>
+<!-- Model -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface block">Model</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border-none rounded-xl py-4 px-4 text-on-surface focus:ring-2 focus:ring-primary-container transition-all">
+<option disabled="" selected="">Select Model</option>
+<option>Camry</option>
+<option>Civic</option>
+<option>Model 3</option>
+<option>3 Series</option>
+</select>
+<span class="material-symbols-outlined custom-select-arrow text-on-surface-variant">keyboard_arrow_down</span>
+</div>
+</div>
+<!-- Variant -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface block">Variant (Optional)</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border-none rounded-xl py-4 px-4 text-on-surface focus:ring-2 focus:ring-primary-container transition-all">
+<option disabled="" selected="">Select Variant</option>
+<option>Standard Range</option>
+<option>Long Range</option>
+<option>Performance</option>
+</select>
+<span class="material-symbols-outlined custom-select-arrow text-on-surface-variant">keyboard_arrow_down</span>
+</div>
+</div>
+<!-- Manufacturing Year -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface block">Manufacturing Year</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border-none rounded-xl py-4 px-4 text-on-surface focus:ring-2 focus:ring-primary-container transition-all">
+<option>2024</option>
+<option>2023</option>
+<option>2022</option>
+<option>2021</option>
+<option>2020</option>
+<option>2019</option>
+<option selected="">2018</option>
+<option>2017</option>
+</select>
+<span class="material-symbols-outlined custom-select-arrow text-on-surface-variant">keyboard_arrow_down</span>
+</div>
+</div>
+<!-- Body Type -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface block">Body Type</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border-none rounded-xl py-4 px-4 text-on-surface focus:ring-2 focus:ring-primary-container transition-all">
+<option selected="">sedan</option>
+<option>suv</option>
+<option>hatchback</option>
+<option>coupe</option>
+<option>truck</option>
+</select>
+<span class="material-symbols-outlined custom-select-arrow text-on-surface-variant">keyboard_arrow_down</span>
+</div>
+</div>
+<!-- Fuel Type -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface block">Fuel Type</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border-none rounded-xl py-4 px-4 text-on-surface focus:ring-2 focus:ring-primary-container transition-all">
+<option selected="">petrol</option>
+<option>diesel</option>
+<option>electric</option>
+<option>hybrid</option>
+</select>
+<span class="material-symbols-outlined custom-select-arrow text-on-surface-variant">keyboard_arrow_down</span>
+</div>
+</div>
+<!-- Transmission -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface block">Transmission</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border-none rounded-xl py-4 px-4 text-on-surface focus:ring-2 focus:ring-primary-container transition-all">
+<option selected="">manual</option>
+<option>automatic</option>
+</select>
+<span class="material-symbols-outlined custom-select-arrow text-on-surface-variant">keyboard_arrow_down</span>
+</div>
+</div>
+</form>
+<div class="mt-10 pt-8 border-t border-surface-container">
+  <div class="flex flex-col md:flex-row gap-4">
+    <button class="flex-1 flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-bold text-label-md bg-mint-soft text-primary border border-primary/20 hover:bg-primary hover:text-on-primary transition-all">
+      <span class="material-symbols-outlined">campaign</span>
+      Post to Buy &amp; Sell
+    </button>
+    <button class="flex-1 flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-bold text-label-md bg-white text-on-surface border border-surface-container hover:border-primary hover:text-primary transition-all">
+      <span class="material-symbols-outlined">publish</span>
+      Publish Listing
+    </button>
+  </div>
+  <p class="text-caption text-on-surface-variant mt-4 text-center">These actions will save your progress and make your vehicle visible to our network.</p>
+</div></div>
+<!-- Footer Actions -->
+<div class="bg-surface-container-low p-6 md:px-12 flex justify-between items-center border-t border-surface-container">
+<button class="flex items-center gap-2 px-8 py-3 rounded-full font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+                        Back
+                    </button>
+<button class="flex items-center gap-2 px-10 py-3 rounded-full font-label-md text-label-md bg-primary text-on-primary font-bold shadow-lg shadow-primary/20 hover:opacity-90 transition-opacity">
+                        Next
+                        <span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Contextual Help -->
+<div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="flex items-start gap-4 p-6 bg-white/40 backdrop-blur rounded-2xl border border-white/60">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Official Data</h4>
+<p class="text-caption font-caption text-on-surface-variant mt-1">We pull from official DMV records to ensure accuracy.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-6 bg-white/40 backdrop-blur rounded-2xl border border-white/60">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">lock</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Secure &amp; Private</h4>
+<p class="text-caption font-caption text-on-surface-variant mt-1">Your personal details are never shared with buyers.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-6 bg-white/40 backdrop-blur rounded-2xl border border-white/60">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">insights</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Live Market Value</h4>
+<p class="text-caption font-caption text-on-surface-variant mt-1">Estimates update daily based on local sales data.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-inverse-surface w-full py-12 px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter max-w-container-max mx-auto">
+<div class="space-y-4">
+<div class="font-headline-md text-headline-md font-bold text-primary">AutoGreen</div>
+<p class="text-on-surface-variant dark:text-surface-variant font-caption text-caption">© 2024 AutoGreen. Transparent Automotive Solutions.</p>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="font-label-md text-label-md text-on-surface font-bold">Platform</h5>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors font-caption text-caption" href="#">Valuations</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors font-caption text-caption" href="#">Sell My Car</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors font-caption text-caption" href="#">Sustainability Report</a>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="font-label-md text-label-md text-on-surface font-bold">Legal</h5>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors font-caption text-caption" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors font-caption text-caption" href="#">Terms of Service</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors font-caption text-caption" href="#">Dealer Portal</a>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="font-label-md text-label-md text-on-surface font-bold">Newsletter</h5>
+<div class="flex gap-2">
+<input class="bg-surface rounded-lg border-none px-4 py-2 w-full text-caption font-caption" placeholder="Email" type="email">
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg material-symbols-outlined">send</button>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Simple interactive micro-interaction for input fields
+        const selects = document.querySelectorAll('select');
+        selects.forEach(select => {
+            select.addEventListener('focus', () => {
+                select.parentElement.parentElement.classList.add('scale-[1.01]');
+                select.parentElement.parentElement.style.transition = 'transform 0.2s ease-out';
+            });
+            select.addEventListener('blur', () => {
+                select.parentElement.parentElement.classList.remove('scale-[1.01]');
+            });
+        });
+    </script>
+
+
+</body></html>

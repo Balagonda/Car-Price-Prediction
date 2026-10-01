@@ -15,7 +15,7 @@ import axios, {
 } from "axios";
 
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+  process.env.NEXT_PUBLIC_API_URL || (typeof window !== "undefined" ? "" : "http://127.0.0.1:8000");
 
 // ──────────────────────────────────────────────
 // Axios Instance
@@ -96,10 +96,17 @@ export interface APIError {
 
 export function getAPIError(error: unknown): APIError {
   if (axios.isAxiosError(error) && error.response?.data) {
-    return error.response.data as APIError;
+    const data = error.response.data;
+    if (data.detail && typeof data.detail === 'object') {
+      return data.detail as APIError;
+    }
+    if (data.detail && typeof data.detail === 'string') {
+      return { success: false, message: data.detail };
+    }
+    return data as APIError;
   }
   return {
     success: false,
-    message: "An unexpected error occurred. Please try again.",
+    message: error instanceof Error ? error.message : "An unexpected error occurred. Please try again.",
   };
 }

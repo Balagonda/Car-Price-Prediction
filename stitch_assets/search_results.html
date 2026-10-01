@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AutoGreen | Search Used Cars</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#d1e4fb",
+                        "tertiary-fixed": "#e1e3e4",
+                        "on-surface-variant": "#3d4a3e",
+                        "on-tertiary-container": "#434546",
+                        "surface-bright": "#f3fcf1",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#6bfe9c",
+                        "tertiary": "#5c5f60",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2b322b",
+                        "inverse-primary": "#4ae183",
+                        "on-primary-fixed-variant": "#005228",
+                        "on-background": "#161d17",
+                        "tertiary-container": "#b1b3b4",
+                        "surface": "#f3fcf1",
+                        "outline-variant": "#bbcbbb",
+                        "outline": "#6c7b6d",
+                        "surface-dim": "#d4dcd2",
+                        "on-secondary-fixed": "#091d2e",
+                        "text-secondary": "#7F8C8D",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#e8f0e5",
+                        "primary": "#006d37",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#454748",
+                        "on-error-container": "#93000a",
+                        "background": "#f3fcf1",
+                        "on-primary-container": "#005027",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#4ae183",
+                        "error": "#ba1a1a",
+                        "primary-container": "#2ecc71",
+                        "surface-container-highest": "#dce5da",
+                        "on-primary-fixed": "#00210c",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-gray": "#F8F9FA",
+                        "on-secondary-container": "#526478",
+                        "on-tertiary-fixed": "#191c1d",
+                        "secondary-container": "#cfe2f9",
+                        "mint-soft": "#E9F7EF",
+                        "surface-container-high": "#e2ebe0",
+                        "secondary-fixed-dim": "#b5c8df",
+                        "secondary": "#4e6073",
+                        "surface-container-low": "#eef6eb",
+                        "on-surface": "#161d17",
+                        "tertiary-fixed-dim": "#c5c7c8",
+                        "surface-tint": "#006d37",
+                        "surface-variant": "#dce5da",
+                        "on-secondary-fixed-variant": "#36485b",
+                        "inverse-on-surface": "#ebf3e8",
+                        "link-blue": "#007BE5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "64px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "caption": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        .mint-glow {
+            box-shadow: 0px 10px 30px rgba(46, 204, 113, 0.08);
+        }
+        .glass-nav {
+            backdrop-filter: blur(8px);
+            background-color: rgba(255, 255, 255, 0.85);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F8F9FA;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #bbcbbb;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6c7b6d;
+        }
+    </style>
+</head>
+<body class="bg-surface-gray font-body-md text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 max-w-container-max mx-auto glass-nav border-b border-surface-variant">
+<div class="flex items-center gap-12">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">AutoGreen</h1>
+<nav class="hidden md:flex gap-gutter">
+<a class="font-body-md text-body-md text-primary border-b-2 border-primary pb-1" href="#">Used Cars</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">New Cars</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Sell Car</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Valuation</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Compare</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">News</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center gap-2 px-4 py-2 bg-surface-container rounded-full text-on-surface-variant text-label-md cursor-pointer hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined">location_on</span>
+<span>City Selector</span>
+</div>
+<span class="material-symbols-outlined text-primary text-2xl cursor-pointer">account_circle</span>
+</div>
+</header>
+<main class="pt-24 pb-20 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop min-h-screen">
+<!-- Hero Search Header -->
+<div class="mb-12">
+<h2 class="font-headline-lg text-headline-lg mb-2">54,457 Used Cars in India</h2>
+<p class="text-on-surface-variant">Find the perfect verified car with AutoGreen's AI Expert guidance.</p>
+</div>
+<div class="flex flex-col lg:flex-row gap-gutter">
+<!-- Sidebar Filters -->
+<aside class="w-full lg:w-72 shrink-0">
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-surface-variant space-y-8 sticky top-24">
+<div class="flex justify-between items-center">
+<h3 class="font-headline-md text-body-lg font-bold">Filters</h3>
+<button class="text-primary text-label-md hover:underline">Reset</button>
+</div>
+<!-- Budget Filter -->
+<div class="space-y-4">
+<p class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">Budget</p>
+<div class="space-y-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-outline text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
+<span class="font-body-md text-body-md group-hover:text-primary">Under ₹2 Lakh</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-outline text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
+<span class="font-body-md text-body-md group-hover:text-primary">₹3 - ₹5 Lakh</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-outline text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
+<span class="font-body-md text-body-md group-hover:text-primary">₹5 - ₹10 Lakh</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-outline text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
+<span class="font-body-md text-body-md group-hover:text-primary">Above ₹10 Lakh</span>
+</label>
+</div>
+</div>
+<!-- Brand Filter -->
+<div class="space-y-4">
+<p class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">Popular Brands</p>
+<div class="grid grid-cols-2 gap-2">
+<button class="px-3 py-2 text-center text-caption rounded-lg border border-surface-variant hover:border-primary hover:bg-mint-soft transition-all">Maruti</button>
+<button class="px-3 py-2 text-center text-caption rounded-lg border border-surface-variant hover:border-primary hover:bg-mint-soft transition-all">Hyundai</button>
+<button class="px-3 py-2 text-center text-caption rounded-lg border border-surface-variant hover:border-primary hover:bg-mint-soft transition-all">Tata</button>
+<button class="px-3 py-2 text-center text-caption rounded-lg border border-surface-variant hover:border-primary hover:bg-mint-soft transition-all">Mahindra</button>
+</div>
+</div>
+<!-- Fuel Type -->
+<div class="space-y-4">
+<p class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">Fuel Type</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-mint-soft text-primary border border-primary text-caption rounded-full cursor-pointer">Petrol</span>
+<span class="px-3 py-1 bg-surface-gray text-on-surface-variant border border-surface-variant text-caption rounded-full cursor-pointer hover:border-primary transition-all">Diesel</span>
+<span class="px-3 py-1 bg-surface-gray text-on-surface-variant border border-surface-variant text-caption rounded-full cursor-pointer hover:border-primary transition-all">CNG</span>
+<span class="px-3 py-1 bg-surface-gray text-on-surface-variant border border-surface-variant text-caption rounded-full cursor-pointer hover:border-primary transition-all">Electric</span>
+</div>
+</div>
+<button class="w-full py-4 bg-primary text-on-primary font-label-md rounded-xl hover:bg-on-primary-container transition-all active:scale-95">Apply Filters</button>
+</div>
+</aside>
+<!-- Main Listing Area -->
+<section class="flex-1 space-y-gutter">
+<!-- Sorting & Quick Filters -->
+<div class="flex flex-wrap justify-between items-center gap-4 bg-surface-container-lowest p-4 rounded-xl border border-surface-variant">
+<div class="flex gap-4">
+<span class="text-on-surface-variant font-label-md">Sort by:</span>
+<select class="border-none bg-transparent font-label-md text-primary focus:ring-0 p-0 cursor-pointer">
+<option>Relevance</option>
+<option>Price - Low to High</option>
+<option>Price - High to Low</option>
+<option>Newest to Oldest</option>
+</select>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-primary text-on-primary rounded-full text-caption">Certified</span>
+<span class="px-3 py-1 bg-mint-soft text-primary rounded-full text-caption border border-primary">Price Drop</span>
+</div>
+</div>
+<!-- Results Grid (Bento Style/Asymmetric) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Car Card 1: Ford Endeavour -->
+<article class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-surface-variant mint-glow group flex flex-col">
+<div class="relative aspect-video overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A front-facing view of a black Ford Endeavour SUV parked in a well-lit residential driveway. The car's polished surface reflects the soft evening sky, highlighting its muscular contours. The surrounding environment is clean and modern, emphasizing the vehicle's premium aesthetic. The image is captured with professional automotive photography styling, using a shallow depth of field to keep the focus sharp on the car's chrome grille and Ford emblem." src="https://lh3.googleusercontent.com/aida/AP1WRLtVc0SCzpgggFAYPsHfBfitOFFsZah-t4qcxdN4sEnVU1CRk3thmQZ3dBbGVxJwqTConUyZHio8xIAft8itbV08KI1bOTET17-OHUz2QqI7JKdi9cnBrvlAdWLHjMboAyrtGgzDCPCT3ZeH5nZG19kUn1Zj0HW0_JsLPqP2SPj2kBge9n-SQSvnIcmVjIjFoCLn0sYWqHE-AFGghZCiYf_k-OwzrwqhCYnZ-d2C3Bc-NmBnB1_1OS0VVw"/>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="bg-primary px-3 py-1 rounded text-on-primary font-label-md text-caption">Certified</span>
+<span class="bg-on-primary-container px-3 py-1 rounded text-on-primary font-label-md text-caption uppercase tracking-tighter">Premium</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-md text-headline-md group-hover:text-primary transition-colors">2019 Ford Endeavour</h3>
+<p class="text-on-surface-variant text-caption">3.2 Titanium AT 4X4</p>
+</div>
+<span class="font-headline-md text-headline-md text-primary">₹19.45L</span>
+</div>
+<div class="grid grid-cols-3 gap-4 py-4 border-y border-surface-variant/50 mb-4">
+<div class="flex flex-col gap-1">
+<span class="material-symbols-outlined text-on-surface-variant text-lg">speed</span>
+<span class="text-caption font-semibold">92,000 km</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="material-symbols-outlined text-on-surface-variant text-lg">settings</span>
+<span class="text-caption font-semibold">Automatic</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="material-symbols-outlined text-on-surface-variant text-lg">local_gas_station</span>
+<span class="text-caption font-semibold">Diesel</span>
+</div>
+</div>
+<div class="mb-4 flex items-center gap-2 text-on-surface-variant text-caption">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span>Lajpat Nagar, New Delhi</span>
+</div>
+<div class="bg-mint-soft p-4 rounded-xl border border-primary/20 mb-6">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-primary text-on-primary px-2 py-0.5 rounded text-[10px] font-bold uppercase">AI Expert</span>
+<span class="text-primary font-bold text-caption">Great Price</span>
+</div>
+<p class="text-on-surface-variant text-caption leading-relaxed">1st owner, 92k km — history is traceable. Ford exited India in 2021 — verify parts availability first.</p>
+</div>
+<div class="mt-auto flex gap-3">
+<button class="flex-1 py-3 bg-primary text-on-primary font-label-md rounded-lg hover:shadow-lg transition-all active:scale-95">View Seller Details</button>
+<button class="p-3 border border-primary text-primary rounded-lg hover:bg-mint-soft transition-all">
+<span class="material-symbols-outlined">chat</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Car Card 2: Mahindra Thar -->
+<article class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-surface-variant mint-glow group flex flex-col">
+<div class="relative aspect-video overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A rugged 2024 Mahindra Thar in a deep black finish, shown in a three-quarter profile view. The vehicle looks pristine, highlighting its iconic boxy design and off-road capabilities. Set against a clean, minimalistic background with soft green lighting that complements the AutoGreen brand identity. The photography uses high-contrast lighting to accentuate the vehicle's bold textures and powerful stance." src="https://lh3.googleusercontent.com/aida/AP1WRLsyU2ybFVCSwBzizoawSJbjBgcNPYWYLFY4QV6d_PBSVF4X3Je4G8-Yg5KDRwwsMGQn1e8DtCbXqAwjVpYzJTyjGU-4WgOlDwuMq-uAegRcqevxp62dNvSh_uYwfN1wBIjbI0_XJY2yJsdt-RCLRJKPNQo6YNwUC7bF8Md4TvVBYR5ONsCUkGjH2BpK8cpKCBsJxBKw0zkmJyVEChwa8JAA3ybQRIV7XOnooynAj5b_YmVRF3OEPUHQ7Q"/>
+<div class="absolute top-4 left-4">
+<span class="bg-[#2ECC71] px-3 py-1 rounded text-on-primary font-label-md text-caption">New Arrival</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-md text-headline-md group-hover:text-primary transition-colors">2024 Mahindra Thar</h3>
+<p class="text-on-surface-variant text-caption">LX Convert Top</p>
+</div>
+<span class="font-headline-md text-headline-md text-primary">₹14.50L</span>
+</div>
+<div class="grid grid-cols-3 gap-4 py-4 border-y border-surface-variant/50 mb-4">
+<div class="flex flex-col gap-1">
+<span class="material-symbols-outlined text-on-surface-variant text-lg">speed</span>
+<span class="text-caption font-semibold">24,000 km</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="material-symbols-outlined text-on-surface-variant text-lg">settings</span>
+<span class="text-caption font-semibold">Manual</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="material-symbols-outlined text-on-surface-variant text-lg">local_gas_station</span>
+<span class="text-caption font-semibold">Diesel</span>
+</div>
+</div>
+<div class="mb-4 flex items-center gap-2 text-on-surface-variant text-caption">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span>Nungambakkam, Chennai</span>
+</div>
+<div class="bg-mint-soft p-4 rounded-xl border border-primary/20 mb-6">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-primary text-on-primary px-2 py-0.5 rounded text-[10px] font-bold uppercase">AI Expert</span>
+<span class="text-primary font-bold text-caption">Highly Recommended</span>
+</div>
+<p class="text-on-surface-variant text-caption leading-relaxed">1st owner, 24k km — documents are clear on this Thar. Only 2 years old — near-new condition.</p>
+</div>
+<div class="mt-auto flex gap-3">
+<button class="flex-1 py-3 bg-primary text-on-primary font-label-md rounded-lg hover:shadow-lg transition-all active:scale-95">View Seller Details</button>
+<button class="p-3 border border-primary text-primary rounded-lg hover:bg-mint-soft transition-all">
+<span class="material-symbols-outlined">chat</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Car Card 3: Maruti Brezza -->
+<article class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-surface-variant mint-glow group flex flex-col">
+<div class="relative aspect-video overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A clean silver 2022 Maruti Suzuki Brezza parked in a high-key studio environment. The car's metallic paint catches the soft, diffused overhead lighting, creating elegant gradients across its body panels. The styling is minimalist and corporate-modern, reflecting the transparency and efficiency of the AutoGreen marketplace. The overall mood is professional, bright, and airy." src="https://lh3.googleusercontent.com/aida/AP1WRLsw5PGtLSbKDRTVKFczSkgV5JMBniY3_BMPNxS0_6hRzCNWCFkSo-BF1xMIaYYSQC6tH8uISd8hS3eCBzaFhbOdP2MObH1XV-KqIS8tFpPibqRC-ZDLrrvM1OSyyJDGtk4MNrPGiX6k0rSJSLzQ4bBkIe--fxZiKGTB_WqcvMIFmyMqWvNgHoMy9uSS1gOTk_C55YuwUcsY2ZqWkkuqfifSrUemLm_NgbvHvrYu6TWohxZfIJqGJ53TX0o"/>
+<div class="absolute top-4 left-4">
+<span class="bg-primary px-3 py-1 rounded text-on-primary font-label-md text-caption">Certified</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-md text-headline-md group-hover:text-primary transition-colors">2022 Maruti Brezza</h3>
+<p class="text-on-surface-variant text-caption">VXi BSVI</p>
+</div>
+<span class="font-headline-md text-headline-md text-primary">₹8.50L</span>
+</div>
+<div class="grid grid-cols-3 gap-4 py-4 border-y border-surface-variant/50 mb-4">
+<div class="flex flex-col gap-1">
+<span class="material-symbols-outlined text-on-surface-variant text-lg">speed</span>
+<span class="text-caption font-semibold">40,000 km</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="material-symbols-outlined text-on-surface-variant text-lg">settings</span>
+<span class="text-caption font-semibold">Manual</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="material-symbols-outlined text-on-surface-variant text-lg">local_gas_station</span>
+<span class="text-caption font-semibold">Petrol</span>
+</div>
+</div>
+<div class="mb-4 flex items-center gap-2 text-on-surface-variant text-caption">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span>Yeshwanthpur, Bangalore</span>
+</div>
+<div class="bg-mint-soft p-4 rounded-xl border border-primary/20 mb-6">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-primary text-on-primary px-2 py-0.5 rounded text-[10px] font-bold uppercase">AI Expert</span>
+<span class="text-primary font-bold text-caption">Great Price</span>
+</div>
+<p class="text-on-surface-variant text-caption leading-relaxed">1st owner, 40k km — history looks clean. Simple to run, easy to park. Low maintenance SUV.</p>
+</div>
+<div class="mt-auto flex gap-3">
+<button class="flex-1 py-3 bg-primary text-on-primary font-label-md rounded-lg hover:shadow-lg transition-all active:scale-95">View Seller Details</button>
+<button class="p-3 border border-primary text-primary rounded-lg hover:bg-mint-soft transition-all">
+<span class="material-symbols-outlined">chat</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Car Card 4: Hyundai Aura -->
+<article class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-surface-variant mint-glow group flex flex-col">
+<div class="relative aspect-video overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A 2023 Hyundai Aura sedan in a sleek white finish, presented in a minimalist, high-trust environment. The lighting is bright and optimistic, echoing a 'clean air' philosophy with significant whitespace. The car's aerodynamic design is emphasized by soft reflections and a diffused 'Mint Glow' shadow effect on the ground, creating a tactile and premium look." src="https://lh3.googleusercontent.com/aida/AP1WRLuSoscO5K2BpD3O87JfdNUYony53SQ0zMTLE083L0s0lgBfgxSx5-zuaq8mXLLQnUQ48vCv82FLtnysIrxA1zJCS8ZaKj9fvgyt9-kc0RZNDOsq1w1ujMrHVw5GUCIiwt_FPpKDbgAMF5ccwYr5auBy01BD8wzhzF2m1_TfFsnIkWF7lQu9mufnG_Dy4Qz4Bk5D0CmgU7BddDKGCQyagkvGW0gyne1e9swrtpExBVy6Ik8QxMYCcTPw5nI"/>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-md text-headline-md group-hover:text-primary transition-colors">2023 Hyundai Aura</h3>
+<p class="text-on-surface-variant text-caption">SX CNG</p>
+</div>
+<span class="font-headline-md text-headline-md text-primary">₹5.70L</span>
+</div>
+<div class="grid grid-cols-3 gap-4 py-4 border-y border-surface-variant/50 mb-4">
+<div class="flex flex-col gap-1">
+<span class="material-symbols-outlined text-on-surface-variant text-lg">speed</span>
+<span class="text-caption font-semibold">73,004 km</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="material-symbols-outlined text-on-surface-variant text-lg">settings</span>
+<span class="text-caption font-semibold">Manual</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="material-symbols-outlined text-on-surface-variant text-lg">local_gas_station</span>
+<span class="text-caption font-semibold">CNG</span>
+</div>
+</div>
+<div class="mb-4 flex items-center gap-2 text-on-surface-variant text-caption">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span>Saket, New Delhi</span>
+</div>
+<div class="bg-mint-soft p-4 rounded-xl border border-primary/20 mb-6">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-primary text-on-primary px-2 py-0.5 rounded text-[10px] font-bold uppercase">AI Expert</span>
+<span class="text-primary font-bold text-caption">Great Price</span>
+</div>
+<p class="text-on-surface-variant text-caption leading-relaxed">1st owner, 73k km — records look solid on this Aura. 300-point inspection done. Cost effective drive.</p>
+</div>
+<div class="mt-auto flex gap-3">
+<button class="flex-1 py-3 bg-primary text-on-primary font-label-md rounded-lg hover:shadow-lg transition-all active:scale-95">View Seller Details</button>
+<button class="p-3 border border-primary text-primary rounded-lg hover:bg-mint-soft transition-all">
+<span class="material-symbols-outlined">chat</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+<!-- Pagination/Load More -->
+<div class="flex justify-center pt-12">
+<button class="px-8 py-4 border-2 border-primary text-primary font-bold rounded-full hover:bg-primary hover:text-on-primary transition-all duration-300">Load 24 More Cars</button>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container mt-20 border-t border-surface-variant">
+<div class="w-full py-12 px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter max-w-container-max mx-auto">
+<div class="space-y-4">
+<h2 class="font-headline-md text-headline-md font-bold text-primary">AutoGreen</h2>
+<p class="text-caption text-on-surface-variant leading-relaxed">© 2024 AutoGreen Marketplace. Driven by Transparency. India's #1 Most Trusted Used Car Destination.</p>
+<div class="flex gap-4">
+<a class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary hover:bg-on-primary-container transition-all" href="#">
+<span class="material-symbols-outlined text-lg">share</span>
+</a>
+<a class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary hover:bg-on-primary-container transition-all" href="#">
+<span class="material-symbols-outlined text-lg">mail</span>
+</a>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-on-surface font-bold uppercase tracking-widest">Platform</h4>
+<ul class="space-y-2">
+<li><a class="text-caption text-on-surface-variant hover:text-primary transition-all" href="#">About Us</a></li>
+<li><a class="text-caption text-on-surface-variant hover:text-primary transition-all" href="#">Contact Us</a></li>
+<li><a class="text-caption text-on-surface-variant hover:text-primary transition-all" href="#">Careers</a></li>
+<li><a class="text-caption text-on-surface-variant hover:text-primary transition-all" href="#">Investors</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-on-surface font-bold uppercase tracking-widest">Solutions</h4>
+<ul class="space-y-2">
+<li><a class="text-caption text-on-surface-variant hover:text-primary transition-all" href="#">Dealer Solutions</a></li>
+<li><a class="text-caption text-on-surface-variant hover:text-primary transition-all" href="#">Car Valuation Guide</a></li>
+<li><a class="text-caption text-on-surface-variant hover:text-primary transition-all" href="#">Used Car Finance</a></li>
+<li><a class="text-caption text-on-surface-variant hover:text-primary transition-all" href="#">Sell to AutoGreen</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-on-surface font-bold uppercase tracking-widest">Experience App</h4>
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-3 p-3 bg-on-background rounded-lg text-white group cursor-pointer hover:bg-inverse-surface transition-all">
+<span class="material-symbols-outlined text-2xl">shop</span>
+<div>
+<p class="text-[10px] leading-tight opacity-70">Get it on</p>
+<p class="text-caption font-bold">Google Play</p>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 bg-on-background rounded-lg text-white group cursor-pointer hover:bg-inverse-surface transition-all">
+<span class="material-symbols-outlined text-2xl">apps</span>
+<div>
+<p class="text-[10px] leading-tight opacity-70">Download on the</p>
+<p class="text-caption font-bold">App Store</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="border-t border-surface-variant py-8 px-margin-desktop max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex gap-6">
+<a class="text-[11px] text-on-surface-variant hover:underline" href="#">Terms &amp; Conditions</a>
+<a class="text-[11px] text-on-surface-variant hover:underline" href="#">Privacy Policy</a>
+<a class="text-[11px] text-on-surface-variant hover:underline" href="#">Corporate Policies</a>
+</div>
+<p class="text-[11px] text-on-surface-variant">© 2026 AutoGreen Software Pvt. Ltd.</p>
+</div>
+</div>
+</footer>
+<!-- Simple JavaScript for filter interactivity -->
+<script>
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                if(this.checked) {
+                    this.parentElement.classList.add('text-primary');
+                } else {
+                    this.parentElement.classList.remove('text-primary');
+                }
+            });
+        });
+
+        // Sticky Header Scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body></html>

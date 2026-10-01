@@ -1,19 +1,15 @@
 "use client";
 
 /**
- * AutoWorth AI — Protected Route Wrapper
+ * AutoWorth AI / AutoGreen — Protected Route Wrapper
  *
  * Client component that enforces authentication and authorization:
  *  - Unauthenticated users → redirect to /login
  *  - Authenticated but unverified → redirect to /verify-email
  *  - Authenticated but insufficient role → render fallback (403)
- *
- * Usage:
- *   <ProtectedRoute>…dashboard content…</ProtectedRoute>
- *   <ProtectedRoute requiredRole="admin">…admin content…</ProtectedRoute>
  */
 
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/providers/auth-context";
 
@@ -29,11 +25,16 @@ export function ProtectedRoute({
   requiredRole,
   loadingFallback,
 }: ProtectedRouteProps) {
+  const [isMounted, setIsMounted] = useState(false);
   const { isLoading, isAuthenticated, isVerified, isAdmin } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (isLoading) return;
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted || isLoading) return;
 
     if (!isAuthenticated) {
       router.replace("/login");
@@ -48,19 +49,20 @@ export function ProtectedRoute({
     if (requiredRole === "admin" && !isAdmin) {
       router.replace("/403");
     }
-  }, [isLoading, isAuthenticated, isVerified, isAdmin, requiredRole, router]);
+  }, [isMounted, isLoading, isAuthenticated, isVerified, isAdmin, requiredRole, router]);
 
-  if (isLoading) {
-    return (
-      loadingFallback ?? (
-        <div className="flex min-h-screen items-center justify-center bg-[#0a0a0f]">
-          <div className="flex flex-col items-center gap-4">
-            <div className="h-10 w-10 animate-spin rounded-full border-4 border-violet-600 border-t-transparent" />
-            <p className="text-sm text-slate-400">Loading…</p>
-          </div>
-        </div>
-      )
-    );
+  const defaultSpinner = (
+    <div className="flex min-h-screen items-center justify-center bg-surface">
+      <div className="flex flex-col items-center gap-4">
+        <div className="h-10 w-10 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+        <p className="text-sm text-on-surface-variant font-medium">Loading...</p>
+      </div>
+    </div>
+  );
+
+  // Guarantee matching HTML between server SSR and initial client hydration
+  if (!isMounted || isLoading) {
+    return loadingFallback ?? defaultSpinner;
   }
 
   if (!isAuthenticated || !isVerified) return null;

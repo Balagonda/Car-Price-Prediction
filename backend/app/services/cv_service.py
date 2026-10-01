@@ -326,7 +326,7 @@ class CVService:
 
         logger.info(
             "✅ [CVService] Pipeline complete — prediction=%s severity=%s "
-            "parts=%d repair=₹%.0f heatmap=%s",
+            "parts=%d repair=INR %.0f heatmap=%s",
             prediction_id,
             cv_result.overall_severity,
             len(cv_result.damaged_parts),

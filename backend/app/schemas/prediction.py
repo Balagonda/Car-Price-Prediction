@@ -130,6 +130,23 @@ class PredictionListItem(BaseSchema):
     created_at: datetime
 
 
+class MarketplaceListing(BaseSchema):
+    """Schema mirroring the frontend CarListing interface for the marketplace."""
+    id: uuid.UUID | str
+    title: str
+    year: int
+    brand: str
+    bodyType: str
+    fuelType: str
+    transmission: str
+    km: int
+    priceLakh: float
+    location: str
+    certified: bool
+    owner: str
+    image: str
+    color: str
+
 # ──────────────────────────────────────────────
 # Admin: Training Schemas
 # ──────────────────────────────────────────────

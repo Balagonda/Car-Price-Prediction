@@ -55,6 +55,7 @@ class Prediction(Base, TimestampMixin):
     # ── Status ────────────────────────────────────────────────
     is_pdf_generated: Mapped[bool] = mapped_column(default=False, nullable=False)
     pdf_url: Mapped[str | None] = mapped_column(Text, nullable=True)
+    is_listed: Mapped[bool] = mapped_column(default=False, nullable=False, server_default="false")
 
     # ── Foreign Keys ──────────────────────────────────────────
     user_id: Mapped[uuid.UUID] = mapped_column(

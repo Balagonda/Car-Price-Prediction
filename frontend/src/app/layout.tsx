@@ -3,6 +3,7 @@ import { Inter, Geist } from "next/font/google";
 import "./globals.css";
 import { QueryProvider } from "@/providers/query-provider";
 import { AuthProvider } from "@/providers/auth-context";
+import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 
@@ -55,6 +56,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={cn(
         "h-full antialiased",
         inter.variable,
@@ -62,11 +64,16 @@ export default function RootLayout({
         "font-sans"
       )}
     >
+      <head>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+      </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <QueryProvider>
           <AuthProvider>
-            {children}
-            <Toaster richColors position="top-right" />
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+              {children}
+              <Toaster richColors position="top-right" />
+            </ThemeProvider>
           </AuthProvider>
         </QueryProvider>
       </body>

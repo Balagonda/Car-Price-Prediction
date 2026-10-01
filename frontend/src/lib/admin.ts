@@ -75,13 +75,13 @@ export interface MLModelResponse {
 }
 
 export async function getAnalytics(): Promise<AnalyticsResponse> {
-  const { data } = await apiClient.get<APIResponse<AnalyticsResponse>>("/api/v1/admin/analytics");
-  return data.data;
+  const { data } = await apiClient.get<APIResponse<AnalyticsResponse>>("/admin/analytics");
+  return data.data!;
 }
 
 export async function getActivityLogs(): Promise<ActivityLogResponse[]> {
-  const { data } = await apiClient.get<APIResponse<ActivityLogResponse[]>>("/api/v1/admin/activity");
-  return data.data;
+  const { data } = await apiClient.get<APIResponse<ActivityLogResponse[]>>("/admin/activity");
+  return data.data!;
 }
 
 export async function uploadDataset(file: File, mode: string, version: string): Promise<DatasetUploadResponse> {
@@ -90,28 +90,35 @@ export async function uploadDataset(file: File, mode: string, version: string): 
   formData.append("mode", mode);
   formData.append("version", version);
 
-  const { data } = await apiClient.post<APIResponse<DatasetUploadResponse>>("/api/v1/admin/datasets/upload", formData, {
+  const { data } = await apiClient.post<APIResponse<DatasetUploadResponse>>("/admin/datasets/upload", formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
   });
-  return data.data;
+  return data.data!;
 }
 
 export async function getModels(): Promise<MLModelResponse[]> {
-  const { data } = await apiClient.get<APIResponse<MLModelResponse[]>>("/api/v1/admin/models");
-  return data.data;
+  const { data } = await apiClient.get<APIResponse<MLModelResponse[]>>("/admin/models");
+  return data.data!;
 }
 
 export async function trainModel(dataset_path: string, version_tag: string): Promise<{version_tag: string, status: string}> {
-  const { data } = await apiClient.post<APIResponse<{version_tag: string, status: string}>>("/api/v1/admin/models/train", {
+  const { data } = await apiClient.post<APIResponse<{version_tag: string, status: string}>>("/admin/models/train", {
     dataset_path,
     version_tag
   });
-  return data.data;
+  return data.data!;
 }
 
 export async function activateModel(version_id: string): Promise<ModelVersionResponse> {
-  const { data } = await apiClient.post<APIResponse<ModelVersionResponse>>(`/api/v1/admin/models/${version_id}/activate`);
-  return data.data;
+  const { data } = await apiClient.post<APIResponse<ModelVersionResponse>>(`/admin/models/${version_id}/activate`);
+  return data.data!;
+}
+
+export async function cleanDataset(dataset_path: string): Promise<{cleaned_path: string, rows: number}> {
+  const { data } = await apiClient.post<APIResponse<{cleaned_path: string, rows: number}>>("/admin/datasets/clean", {
+    dataset_path
+  });
+  return data.data!;
 }

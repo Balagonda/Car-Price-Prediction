@@ -28,6 +28,9 @@ from app.schemas.user import (
     UserLoginRequest,
     UserResponse,
     UserUpdateRequest,
+    PasswordResetRequest,
+    PasswordResetConfirmRequest,
+    ResendVerificationRequest,
 )
 from app.services.auth_service import AuthService
 from app.core.config import get_settings
@@ -243,6 +246,72 @@ async def verify_email(
         success=True,
         message="Email verified successfully. You can now log in.",
         data=user_resp,
+    )
+
+
+@router.post(
+    "/resend-verification",
+    summary="Resend verification email",
+    response_model=APIResponse,
+)
+async def resend_verification(
+    data: ResendVerificationRequest,
+    db: DBSession,
+) -> APIResponse:
+    """
+    Resend the verification email to the user if they are not verified yet.
+    """
+    auth_svc = AuthService(db)
+    await auth_svc.resend_verification(data)
+    return APIResponse(
+        success=True,
+        message="If that email is registered and unverified, a new link will be sent.",
+    )
+
+
+# ──────────────────────────────────────────────
+# Forgot / Reset Password
+# ──────────────────────────────────────────────
+@router.post(
+    "/forgot-password",
+    summary="Request a password reset email",
+    response_model=APIResponse,
+)
+async def forgot_password(
+    data: PasswordResetRequest,
+    db: DBSession,
+) -> APIResponse:
+    """
+    Sends a password reset token to the given email if the account exists.
+    """
+    auth_svc = AuthService(db)
+    token = await auth_svc.forgot_password(data)
+    
+    # Always return success to prevent email enumeration
+    return APIResponse(
+        success=True,
+        message="If that email is registered, you will receive a reset link shortly.",
+        data={"reset_token": token} if settings.DEBUG and token else None
+    )
+
+
+@router.post(
+    "/reset-password",
+    summary="Reset password using a token",
+    response_model=APIResponse,
+)
+async def reset_password(
+    data: PasswordResetConfirmRequest,
+    db: DBSession,
+) -> APIResponse:
+    """
+    Resets the user's password using the token sent to their email.
+    """
+    auth_svc = AuthService(db)
+    await auth_svc.reset_password(data)
+    return APIResponse(
+        success=True,
+        message="Password has been reset successfully. You can now log in."
     )
 
 
