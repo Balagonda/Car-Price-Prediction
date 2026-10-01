@@ -17,11 +17,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Install python dependencies
-COPY requirements.txt /app/
+COPY backend/requirements.txt /app/requirements.txt
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# Copy project
-COPY . /app/
+# Copy backend project
+COPY backend/ /app/
 
 # Expose the port
 EXPOSE 8000
