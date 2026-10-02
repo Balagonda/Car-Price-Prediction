@@ -111,13 +111,18 @@ class Settings(BaseSettings):
     @property
     def cors_origins(self) -> list[str]:
         """Allowed CORS origins based on environment."""
-        if self.is_production:
-            return [self.FRONTEND_URL]
-        return [
-            self.FRONTEND_URL,
+        origins: list[str] = [
             "http://localhost:3000",
             "http://127.0.0.1:3000",
+            "https://frontend-tau-sandy-39.vercel.app",
+            "https://frontend-car-price-prediction.vercel.app",
         ]
+        if self.FRONTEND_URL:
+            for url in self.FRONTEND_URL.split(","):
+                clean = url.strip().rstrip("/")
+                if clean and clean not in origins:
+                    origins.append(clean)
+        return origins
 
 
 @lru_cache

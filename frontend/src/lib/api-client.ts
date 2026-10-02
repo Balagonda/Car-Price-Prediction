@@ -25,7 +25,7 @@ export const apiClient: AxiosInstance = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-  timeout: 30_000,
+  timeout: 60_000,
   withCredentials: true, // Send cookies (refresh token)
 });
 
@@ -95,15 +95,29 @@ export interface APIError {
 }
 
 export function getAPIError(error: unknown): APIError {
-  if (axios.isAxiosError(error) && error.response?.data) {
-    const data = error.response.data;
-    if (data.detail && typeof data.detail === 'object') {
-      return data.detail as APIError;
+  if (axios.isAxiosError(error)) {
+    if (error.response?.data) {
+      const data = error.response.data;
+      if (data.detail && typeof data.detail === "object") {
+        return data.detail as APIError;
+      }
+      if (data.detail && typeof data.detail === "string") {
+        return { success: false, message: data.detail };
+      }
+      return data as APIError;
     }
-    if (data.detail && typeof data.detail === 'string') {
-      return { success: false, message: data.detail };
+    if (error.code === "ECONNABORTED" || error.message?.toLowerCase().includes("timeout")) {
+      return {
+        success: false,
+        message: "The server is taking longer than usual to respond (it may be waking up from sleep). Please wait a few seconds and try again.",
+      };
     }
-    return data as APIError;
+    if (error.message === "Network Error") {
+      return {
+        success: false,
+        message: "Unable to reach the server. The backend may be spinning up or network connection was interrupted. Please retry in a few moments.",
+      };
+    }
   }
   return {
     success: false,
